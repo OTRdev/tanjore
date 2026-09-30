@@ -92,8 +92,8 @@ export const menu: MenuSection[] = [
       { name: "Aloo Paratha", description: "Flaky whole wheat bread stuffed with potatoes", price: 4, veg: true, group: "Roti & Parathas" },
       { name: "Paneer Paratha", description: "Tandoori bread stuffed with cottage cheese & herbs", price: 5, veg: true, group: "Roti & Parathas" },
       { name: "Aloo Paratha + Dahi", description: "Potato-stuffed paratha served with cooling yogurt", price: 6, veg: true, group: "Combos" },
-      // TODO(owner): price for Channa Kulcha (new item, no price provided yet).
-      { name: "Channa Kulcha", description: "Tandoori kulcha topped with spiced chana & fresh onion salad", veg: true, group: "Combos" },
+      // Held back until the owner provides a price. To add it, uncomment and set `price`:
+      // { name: "Channa Kulcha", description: "Tandoori kulcha topped with spiced chana & fresh onion salad", price: 0, veg: true, group: "Combos" },
     ],
   },
   {
