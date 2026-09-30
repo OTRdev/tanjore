@@ -6,7 +6,9 @@ import { site } from "../data/site";
 
 interface Props { title: string; description?: string; image?: string; noindex?: boolean }
 const { title, description = site.description, image = "/og-image.jpg", noindex = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname, site.url).href;
+// Pages build to menu.html etc., but the public URLs are /menu, /about and /.
+const cleanPath = Astro.url.pathname.replace(/(^|\/)index\.html$/, "/").replace(/\.html$/, "");
+const canonical = new URL(cleanPath || "/", site.url).href;
 const ogImage = new URL(image, site.url).href;
 const fullTitle = title;
 
