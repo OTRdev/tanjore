@@ -1,6 +1,7 @@
 // Single source of truth for business facts. Used by the UI and the JSON-LD.
 export const site = {
   name: "Tanjore Indian Cuisine",
+  tagline: "Authentic Indian Cuisine · Family recipes since 2004",
   url: "https://www.tanjore.ca",
   phone: "+1-613-967-5967",
   phoneDisplay: "(613) 967-5967",

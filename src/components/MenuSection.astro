@@ -1,6 +1,6 @@
 ---
 // Renders one section of src/data/menu.ts. Prices come from menu.ts only.
-import type { MenuSection as MenuSectionType } from "../data/menu";
+import type { MenuSection as MenuSectionType, Spice } from "../data/menu";
 import { priceOf } from "../data/menu";
 
 export interface Props {
@@ -9,30 +9,43 @@ export interface Props {
 
 const { section } = Astro.props;
 const money = (n?: number) => (n === undefined ? "" : `$${n.toFixed(2)}`);
+const spiceLabel: Record<Spice, string> = { mild: "Mild", medium: "Medium", hot: "Spicy" };
 ---
 
 <section id={section.id} class="menu-section-block" data-menu-section>
   <div class="menu-section-head">
     <h2>{section.title}</h2>
     {section.subtitle && <p class="muted small">{section.subtitle}</p>}
+    {section.price !== undefined && <p class="each-price">Each {money(section.price)}</p>}
     {section.footnote && <p class="muted small">{section.footnote}</p>}
   </div>
   <ul class="menu-items">
-    {section.items.map((item) => {
-      // In flat-price sections the price is in the footnote, so don't repeat it on every row.
+    {section.items.map((item, i) => {
+      // In flat-price sections the price is in the heading, so don't repeat it on every row.
       const price = section.price === undefined ? money(priceOf(section, item)) : "";
+      const newGroup = item.group && item.group !== section.items[i - 1]?.group;
       return (
-        <li class="menu-item-row" data-veg={item.veg ? "true" : "false"}>
-          <span class="menu-item-name">
-            {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
-            {item.name}
-            {item.vegan && <span class="diet-badge">Vegan</span>}
-            {item.glutenFree && <span class="diet-badge">Gluten free</span>}
-            {item.note && <span class="menu-item-note">{item.note}</span>}
-            {item.description && <span class="menu-item-desc">{item.description}</span>}
-          </span>
-          {price && <span class="menu-item-price">{price}</span>}
-        </li>
+        <>
+          {newGroup && <li class="menu-group" aria-hidden="false"><h3>{item.group}</h3></li>}
+          <li class="menu-item-row" data-veg={item.veg ? "true" : "false"}>
+            <span class="menu-item-name">
+              {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
+              {item.name}
+              {item.vegan && <span class="diet-badge">Vegan</span>}
+              {item.glutenFree && <span class="diet-badge">Gluten free</span>}
+              {item.dry && <span class="tag-badge">Dry</span>}
+              {item.spice && (
+                <span class={`spice-badge spice-${item.spice}`}>
+                  {item.spice === "hot" && <span aria-hidden="true">🔥 </span>}
+                  {spiceLabel[item.spice]}
+                </span>
+              )}
+              {item.note && <span class="menu-item-note">{item.note}</span>}
+              {item.description && <span class="menu-item-desc">{item.description}</span>}
+            </span>
+            {price && <span class="menu-item-price">{price}</span>}
+          </li>
+        </>
       );
     })}
   </ul>

@@ -227,6 +227,16 @@ main { display: block; }
 .menu-item-row.is-hidden { display: none; }
 .menu-item-name { font-weight: 600; }
 .menu-item-note { display: block; font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+.each-price { font-weight: 700; color: var(--color-deep); font-size: var(--fs-sm); }
+.menu-group { list-style: none; padding: var(--space-6) 0 var(--space-1); }
+.menu-group h3 { font-size: var(--fs-md); font-family: var(--font-heading); color: var(--color-deep); margin: 0; }
+.menu-group.is-hidden { display: none; }
+.menu-legend { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-3) var(--space-4); margin-top: var(--space-4); }
+.tag-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: #efe6d8; color: #5a4636; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
+.spice-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
+.spice-mild { background: #fdf0c9; color: #7a5b00; }
+.spice-medium { background: #fddfb8; color: #8a4a00; }
+.spice-hot { background: #fbd2c8; color: #a1240e; }
 .diet-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: #e3f1e2; color: #2d6a2b; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
 .menu-item-price { font-weight: 700; color: var(--color-deep); white-space: nowrap; }
 .veg-badge { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #3f8f3d; border-radius: 3px; position: relative; margin-right: 8px; vertical-align: middle; }
