@@ -1,0 +1,271 @@
+/* src/styles/global.css
+   Design tokens (CSS custom properties) + base styles + shared components.
+   Palette pulled from the Tanjore logo. */
+
+@import "./fonts.css";
+
+:root {
+  /* Brand palette */
+  --color-deep: #8f1a0a;
+  --color-orange: #e8441a;
+  --color-saffron: #f7941d;
+  --color-gold: #e8c31a;
+  --color-cream: #fff6e9;
+  --color-ink: #201512;
+
+  /* Text */
+  --color-text: #2b1c15;
+  --color-text-muted: #6b4f40;
+  --color-on-dark: #fff6e9;
+  --color-on-dark-muted: rgba(255, 246, 233, 0.75);
+
+  /* Surfaces */
+  --color-surface: #ffffff;
+  --color-surface-alt: #fbeee0;
+
+  /* Type */
+  --font-heading: "Fraunces Variable", Georgia, serif;
+  --font-body: "Inter Variable", system-ui, sans-serif;
+
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: clamp(1.75rem, 3vw, 2.5rem);
+  --fs-2xl: clamp(2.25rem, 4vw, 3.25rem);
+  --fs-3xl: clamp(2.75rem, 6vw, 4.5rem);
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 12px rgba(32, 21, 18, 0.08);
+  --shadow-md: 0 12px 32px rgba(32, 21, 18, 0.14);
+
+  --container: 1200px;
+}
+
+/* Base / reset */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-heading); margin: 0; line-height: 1.15; }
+p { line-height: 1.65; }
+button { font-family: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 8px; top: -48px; background: var(--color-ink); color: var(--color-cream);
+  padding: 10px 18px; border-radius: var(--radius-sm); z-index: 200; transition: top 0.2s ease;
+}
+.skip-link:focus { top: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Layout helpers */
+.container { max-width: var(--container); margin: 0 auto; padding-inline: var(--space-5); }
+main { display: block; }
+.section { padding-block: var(--space-9); }
+.section-head { text-align: center; margin-bottom: var(--space-8); }
+.section-head h2 { font-size: var(--fs-2xl); margin-bottom: var(--space-4); }
+.eyebrow {
+  display: inline-block; color: var(--color-orange); letter-spacing: 3px; text-transform: uppercase;
+  font-size: var(--fs-xs); font-weight: 600; margin-bottom: var(--space-4);
+}
+.muted { color: var(--color-text-muted); }
+.muted.small { font-size: var(--fs-sm); }
+
+/* Content is only hidden when JS is running (html.js), so no-JS visitors and crawlers see everything. */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; gap: var(--space-6); }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  border: none; border-radius: var(--radius-pill); font-weight: 600; letter-spacing: 0.3px;
+  font-size: var(--fs-sm); padding: 14px 30px; cursor: pointer; text-decoration: none;
+}
+.btn-primary { background: var(--color-orange); color: var(--color-cream); }
+.btn-primary:hover { background: var(--color-deep); }
+.btn-outline { background: transparent; border: 1.5px solid rgba(255, 246, 233, 0.45); color: var(--color-on-dark); }
+.btn-outline:hover { border-color: var(--color-cream); }
+.btn-ghost { background: var(--color-surface-alt); color: var(--color-text); }
+
+/* Header / nav */
+.site-header { position: sticky; top: 0; z-index: 50; background: var(--color-ink); color: var(--color-on-dark); }
+.nav { display: flex; align-items: center; justify-content: space-between; padding-block: var(--space-3); }
+/* The logo's lettering is dark red, so it sits on a cream badge to stay legible on the dark header. */
+.nav-logo { display: block; background: var(--color-cream); border-radius: var(--radius-md); padding: 4px 8px; margin-block: -2px; box-shadow: 0 2px 10px rgba(0,0,0,0.25); }
+.nav-logo img { display: block; height: 56px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: var(--space-6); }
+.nav-link { text-decoration: none; font-size: var(--fs-sm); font-weight: 500; opacity: 0.85; }
+.nav-link:hover, .nav-link[aria-current="page"] { opacity: 1; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-5); }
+.nav-toggle {
+  display: none; background: none; border: none; color: var(--color-on-dark);
+  font-size: 26px; cursor: pointer; padding: var(--space-2);
+}
+.nav-tel { display: none; }
+.btn { white-space: nowrap; }
+@media (max-width: 860px) {
+  .nav { gap: var(--space-3); }
+  .nav-logo img { height: 44px; }
+  .nav-actions { margin-left: auto; }
+  .nav-actions .nav-link { display: none; }
+  .nav-toggle { order: 3; }
+  .nav-tel { display: block; }
+  .nav-actions .btn { padding: 10px 18px; font-size: var(--fs-sm); }
+  .nav-links { position: fixed; inset: 76px 0 0 0; background: var(--color-ink); flex-direction: column;
+    justify-content: flex-start; align-items: flex-start; padding: var(--space-6) var(--space-5); gap: var(--space-5);
+    transform: translateX(-100%); transition: transform 0.25s ease; }
+  .nav-links.is-open { transform: translateX(0); }
+  .nav-toggle { display: inline-flex; }
+}
+
+/* Hero */
+.hero { position: relative; min-height: 88vh; display: flex; align-items: center; overflow: hidden; }
+.hero-media { position: absolute; inset: 0; z-index: 0; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.hero-scrim { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(32,21,18,0.88) 10%, rgba(143,26,10,0.55) 60%, rgba(32,21,18,0.85) 100%); z-index: 1; }
+.hero-content { position: relative; z-index: 2; max-width: 720px; padding: var(--space-9) var(--space-5); color: var(--color-on-dark); }
+.hero-content h1 { font-size: var(--fs-3xl); margin-bottom: var(--space-4); }
+.hero-content p { font-size: var(--fs-md); color: var(--color-on-dark-muted); max-width: 520px; margin-bottom: var(--space-6); }
+.hero-ctas { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+/* Dish / menu cards */
+.dish-card { background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.dish-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.dish-card img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+.dish-card-body { padding: var(--space-5); }
+.dish-card-body h3 { font-size: var(--fs-md); margin-bottom: var(--space-2); }
+.dish-card-body p { font-size: var(--fs-sm); color: var(--color-text-muted); margin: 0; }
+
+/* Gallery strip */
+.gallery-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); gap: var(--space-4); overflow-x: auto; padding-bottom: var(--space-3); scroll-snap-type: x mandatory; }
+.gallery-strip img { border-radius: var(--radius-md); aspect-ratio: 1; object-fit: cover; scroll-snap-align: start; }
+
+/* Hours badge */
+.hours-badge {
+  display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--fs-xs); font-weight: 700;
+  letter-spacing: 0.4px; text-transform: uppercase; padding: 8px 16px; border-radius: var(--radius-pill);
+  background: var(--color-surface-alt); color: var(--color-text);
+}
+.hours-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-text-muted); }
+.hours-badge[data-state="open"] { background: rgba(76, 140, 74, 0.14); color: #2c5a2a; }
+.hours-badge[data-state="open"]::before { background: #3f8f3d; }
+.hours-badge[data-state="closed"] { background: rgba(143, 26, 10, 0.1); color: var(--color-deep); }
+.hours-badge[data-state="closed"]::before { background: var(--color-deep); }
+
+/* Menu page */
+.menu-jumpnav { position: sticky; top: 72px; z-index: 30; background: var(--color-cream); border-bottom: 1px solid rgba(32,21,18,0.08); padding-block: var(--space-3); }
+.menu-jumpnav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap; }
+.menu-jump-links { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.menu-jump-link { text-decoration: none; font-size: var(--fs-sm); font-weight: 600; color: var(--color-text-muted); padding: 6px 4px; border-bottom: 2px solid transparent; }
+.menu-jump-link.is-active, .menu-jump-link:hover { color: var(--color-orange); border-bottom-color: var(--color-orange); }
+.veg-toggle { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.veg-toggle input { width: 18px; height: 18px; accent-color: #3f8f3d; }
+
+.menu-section-block { padding-block: var(--space-8); border-bottom: 1px solid rgba(32,21,18,0.08); }
+.menu-section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-5); }
+.menu-items { list-style: none; margin: 0; padding: 0; }
+.menu-item-desc { display: block; font-weight: 400; font-size: var(--fs-sm); color: var(--color-text-muted); margin-top: 2px; }
+.menu-section-block.is-hidden, .menu-jump-link.is-hidden { display: none; }
+.menu-section-head h2 { font-size: var(--fs-xl); }
+.menu-item-row { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px dashed rgba(32,21,18,0.12); }
+.menu-item-row.is-hidden { display: none; }
+.menu-item-name { font-weight: 600; }
+.menu-item-note { display: block; font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+.diet-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: #e3f1e2; color: #2d6a2b; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
+.menu-item-price { font-weight: 700; color: var(--color-deep); white-space: nowrap; }
+.veg-badge { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #3f8f3d; border-radius: 3px; position: relative; margin-right: 8px; vertical-align: middle; }
+.veg-badge::after { content: ""; position: absolute; inset: 3px; background: #3f8f3d; border-radius: 50%; }
+.price-note { font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-6); }
+
+.combo-card { background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+.combo-card h3 { font-size: var(--fs-md); margin-bottom: var(--space-2); }
+
+/* About page */
+.story-block { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: center; padding-block: var(--space-7); }
+.story-block img { border-radius: var(--radius-lg); }
+.story-block:nth-child(even) .story-media { order: 2; }
+@media (max-width: 900px) {
+  .story-block { grid-template-columns: 1fr; }
+  .story-block:nth-child(even) .story-media { order: 0; }
+}
+
+/* Contact page */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+.contact-info-list { display: flex; flex-direction: column; gap: var(--space-5); margin-top: var(--space-5); }
+.contact-label { font-size: var(--fs-xs); letter-spacing: 1px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 4px; }
+.contact-map { border-radius: var(--radius-lg); overflow: hidden; border: none; width: 100%; min-height: 360px; }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* Order strip */
+.order-strip { border-radius: var(--radius-lg); padding: var(--space-8) var(--space-6); text-align: center; background: linear-gradient(135deg, var(--color-orange), var(--color-deep)); color: var(--color-on-dark); }
+.order-strip h2 { color: var(--color-on-dark); margin-bottom: var(--space-3); }
+.order-strip p { color: var(--color-on-dark-muted); max-width: 480px; margin: 0 auto var(--space-5); }
+
+/* Footer */
+.site-footer { background: var(--color-ink); color: var(--color-on-dark); padding-block: var(--space-7); }
+.footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.footer-inner img { display: block; height: 72px; width: auto; background: var(--color-cream); border-radius: var(--radius-md); padding: 6px 10px; }
+.footer-links { display: flex; gap: var(--space-5); }
+.footer-link { text-decoration: none; color: var(--color-on-dark-muted); font-size: var(--fs-sm); }
+.footer-link:hover { color: var(--color-cream); }
+.footer-copy { font-size: var(--fs-xs); color: rgba(255,246,233,0.45); }
+
+/* 404 */
+.not-found { text-align: center; padding-block: var(--space-10); }
+.not-found h1 { font-size: var(--fs-3xl); margin-bottom: var(--space-4); }

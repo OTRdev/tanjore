@@ -1,0 +1,57 @@
+---
+// src/pages/contact.astro
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import HoursBadge from "../components/HoursBadge.astro";
+import { site } from "../data/site";
+---
+
+<Base
+  title="Hours, Location & Contact | Tanjore Indian Cuisine, Belleville ON"
+  description="Visit Tanjore Indian Cuisine at 151 Pinnacle St, Belleville, Ontario. Open Tuesday to Sunday, 12 PM to 7 PM. Call (613) 967-5967 or order online."
+>
+  <Header />
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Contact</span>
+          <h1 style="font-size: var(--fs-3xl);">Visit Tanjore</h1>
+        </div>
+        <div class="contact-grid">
+          <div>
+            <div class="contact-info-list">
+              <div>
+                <div class="contact-label">Address</div>
+                <div style="font-size: var(--fs-md);">{site.fullAddress}</div>
+              </div>
+              <div>
+                <div class="contact-label">Hours</div>
+                <div style="font-size: var(--fs-md);">{site.hours.display}</div>
+                <div style="margin-top: 8px;"><HoursBadge /></div>
+              </div>
+              <div>
+                <div class="contact-label">Phone</div>
+                <a href={`tel:${site.phone}`} style="font-size: var(--fs-md);">{site.phoneDisplay}</a>
+              </div>
+              <div>
+                <a href={site.orderUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  Order Online
+                </a>
+              </div>
+            </div>
+          </div>
+          <iframe
+            class="contact-map"
+            src={site.mapEmbedUrl}
+            loading="lazy"
+            title={`Map to ${site.name}`}
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

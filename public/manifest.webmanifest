@@ -1,0 +1,12 @@
+{
+  "name": "Tanjore Indian Cuisine",
+  "short_name": "Tanjore",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1a0d08",
+  "background_color": "#1a0d08",
+  "icons": [
+    { "src": "/logo192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

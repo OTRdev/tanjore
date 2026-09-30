@@ -1,0 +1,85 @@
+---
+// src/pages/about.astro
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import rak1 from "../assets/story/rak1.png";
+import rak2 from "../assets/story/rak2.png";
+import rak3 from "../assets/story/rak3.png";
+import rak4 from "../assets/story/rak4.png";
+---
+
+<Base
+  title="Our Story | Tanjore Indian Cuisine, Belleville ON"
+  description="The story of Tanjore Indian Cuisine: Rakesh and Neeru Kumar's family restaurant, from Scarborough to Belleville, Ontario."
+>
+  <Header />
+  <main id="main">
+    <section class="section" style="padding-bottom: var(--space-6);">
+      <div class="container" style="text-align:center; max-width: 720px; margin-inline:auto;">
+        <span class="eyebrow">Our Story</span>
+        <h1 style="font-size: var(--fs-3xl);">Our Story</h1>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="story-block">
+        <div class="story-media">
+          <Image src={rak1} alt="Archive photo of a chef holding a certificate in a restaurant kitchen" width={600} height={450} />
+        </div>
+        <div>
+          <h2>From Madhya Pradesh to Canada</h2>
+          <p>
+            Rakesh Kumar came to Canada from MP, India in 1989 with a passion for food and culinary
+            arts. He was offered a head chef position at a popular local Indian restaurant in
+            Scarborough.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-block">
+        <div class="story-media">
+          <Image src={rak2} alt="Archive photo of a chef at the tandoor with skewered chicken" width={600} height={450} />
+        </div>
+        <div>
+          <h2>Over a Decade as Head Chef</h2>
+          <p>
+            Rakesh worked there for over ten years, before deciding he wanted to put his culinary
+            skills to the test.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-block">
+        <div class="story-media">
+          <Image src={rak3} alt="Archive photo of a chef working in a restaurant kitchen" width={600} height={450} />
+        </div>
+        <div>
+          <h2>Tanjore Catering &amp; Sweets, 2004</h2>
+          <p>
+            In 2004, Rakesh and his wife Neeru opened their very own little takeout restaurant,
+            Tanjore Catering &amp; Sweets. It quickly became a local favourite.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-block">
+        <div class="story-media">
+          <Image src={rak4} alt="Archive photo of a chef with colleagues and friends at a restaurant" width={600} height={450} />
+        </div>
+        <div>
+          <h2>A Dining Room of Our Own, 2017</h2>
+          <p>
+            Wanting to provide an authentic dine-in experience, in 2017 they took the leap and
+            expanded into a larger location. Customers came from different cities to try the dishes.
+            Some popular must-tries are the Palace Naan, the biryanis and, of course, the butter
+            chicken. Today, Tanjore is an admired family restaurant in Belleville, Ontario. Moving
+            from Scarborough didn't stop loyal customers from travelling to visit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

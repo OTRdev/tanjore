@@ -1,0 +1,19 @@
+---
+// src/components/Footer.astro
+import { Image } from "astro:assets";
+import { site } from "../data/site";
+import logo from "../assets/brand/logo.png";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <Image src={logo} alt={site.name} width={140} height={128} />
+    <nav class="footer-links" aria-label="Social">
+      <a href={site.social.instagram} class="footer-link">Instagram</a>
+      <a href={site.social.facebook} class="footer-link">Facebook</a>
+    </nav>
+    <p class="footer-copy">© {year} {site.name}, Belleville, Ontario</p>
+  </div>
+</footer>

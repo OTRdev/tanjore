@@ -1,0 +1,22 @@
+---
+// src/components/HoursBadge.astro
+// Renders a badge; actual open/closed state is computed client-side in
+// America/Toronto time by src/scripts/hours-badge.ts (server-rendered HTML
+// has no reliable notion of the visitor's "now").
+import { site } from "../data/site";
+---
+
+<span
+  class="hours-badge"
+  id="hours-badge"
+  data-open={site.hours.opens}
+  data-close={site.hours.closes}
+  data-closed-days={site.hours.closedDays.join(",")}
+  data-timezone={site.hours.timezone}
+>
+  Checking hours…
+</span>
+
+<script>
+  import "../scripts/hours-badge.ts";
+</script>

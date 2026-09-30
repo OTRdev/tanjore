@@ -1,0 +1,183 @@
+---
+// src/pages/index.astro
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import DishCard from "../components/DishCard.astro";
+import GalleryStrip from "../components/GalleryStrip.astro";
+import HoursBadge from "../components/HoursBadge.astro";
+import { Image } from "astro:assets";
+
+import { site } from "../data/site";
+import { combos, thalis } from "../data/menu";
+
+import heroImage from "../assets/photos/butter-chicken-biryani-naan.jpg";
+import tandooriPhoto from "../assets/photos/tandoori-chicken.jpg";
+import spreadPhoto from "../assets/photos/spread-pink.jpg";
+import kadaiPhoto from "../assets/photos/kadai-bowls.jpg";
+import rak1 from "../assets/story/rak1.png";
+
+import img1 from "../assets/food/IMG_1.png";
+import img2 from "../assets/food/IMG_2.png";
+import img3 from "../assets/food/IMG_3.png";
+import img4 from "../assets/food/IMG_4.png";
+import img5 from "../assets/food/IMG_5.png";
+import img6 from "../assets/food/IMG_6.png";
+import img7 from "../assets/food/IMG_7.png";
+import img8 from "../assets/food/IMG_8.png";
+
+// Descriptions reuse the menu wording so nothing is claimed that the menu doesn't say.
+const signatureDishes = [
+  { name: "Butter Chicken", desc: "Boneless tandoori chicken cooked in an exquisite creamy tomato sauce.", image: kadaiPhoto, alt: "Butter chicken and curries served in copper karahi bowls" },
+  { name: "Tandoori Chicken", desc: "Marinated chicken cooked in a tandoor. Half or full.", image: tandooriPhoto, alt: "Tandoori chicken with onions in a takeout container" },
+  { name: "Naan, Biryani & Curry", desc: "Fresh tandoori naan, biryani and butter chicken.", image: spreadPhoto, alt: "Overhead view of rice, pakoras, gulab jamun, butter chicken and naan" },
+  { name: "Chicken Biryani", desc: "Marinated chicken cooked with basmati rice and spices.", image: img2, alt: "Chicken biryani in a white serving dish" },
+];
+
+const galleryImages = [
+  { src: img4, alt: "Chilli chicken" },
+  { src: img1, alt: "Tanjore combo with butter chicken, biryani and garlic naan" },
+  { src: img2, alt: "Chicken biryani" },
+  { src: img3, alt: "Butter paneer" },
+  { src: img5, alt: "Vegetable biryani" },
+  { src: img6, alt: "Pani poori" },
+  { src: img7, alt: "Chicken pakora" },
+  { src: img8, alt: "Bhel sev" },
+];
+---
+
+<Base
+  title="Tanjore Indian Cuisine | Authentic North Indian Restaurant in Belleville, ON"
+  description="Family-run North Indian restaurant at 151 Pinnacle St, Belleville. Butter chicken, biryanis, tandoori, fresh naan, vegetarian dishes and lunch thalis. Dine in, takeout or order online."
+>
+  <Header />
+  <main id="main">
+    <Hero
+      title="Authentic North Indian Cuisine in Belleville"
+      subtitle="Butter chicken, biryanis, tandoori and fresh naan. A family-run North Indian kitchen at 151 Pinnacle St, Belleville."
+      image={heroImage}
+      imageAlt="Butter chicken, biryani, and naan fresh from the Tanjore kitchen"
+      ctaPrimaryLabel="Order Online"
+      ctaPrimaryHref={site.orderUrl}
+      ctaSecondaryLabel="View Menu"
+      ctaSecondaryHref="/menu"
+    />
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Signature</span>
+          <h2>What We're Known For</h2>
+        </div>
+        <div class="grid-4">
+          {signatureDishes.map((dish) => (
+            <DishCard name={dish.name} description={dish.desc} image={dish.image} alt={dish.alt} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" style="background: var(--color-surface-alt);">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Lunch &amp; Combos</span>
+          <h2>Thalis &amp; Combos</h2>
+          <p class="muted">Lunch thalis served {thalis.hours}, plus combos for a full meal.</p>
+        </div>
+        <div class="grid-4">
+          {thalis.items.map((item) => (
+            <div class="combo-card">
+              <h3>{item.name}</h3>
+              <p class="muted">${item.price.toFixed(2)}</p>
+            </div>
+          ))}
+          {combos.map((item) => (
+            <div class="combo-card">
+              <h3>{item.name}</h3>
+              <p class="muted">${item.price.toFixed(2)}</p>
+              <p class="muted small">{item.includes.join(" · ")}</p>
+            </div>
+          ))}
+        </div>
+        <p style="text-align:center; margin-top: var(--space-6);">
+          <a href="/menu" class="btn btn-ghost">See Full Menu</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container grid-2">
+        <Image src={rak1} alt="Archive photo from Rakesh Kumar's early years as a restaurant chef" width={600} height={450} style="border-radius: var(--radius-lg);" />
+        <div>
+          <span class="eyebrow">Our Story</span>
+          <h2>A Family Recipe, Since 2004</h2>
+          <p class="muted" style="font-size: var(--fs-md); margin-bottom: var(--space-5);">
+            Rakesh Kumar came to Canada from MP, India in 1989 and spent over ten years as head chef
+            at a popular Indian restaurant in Scarborough before opening Tanjore Catering &amp; Sweets
+            with his wife Neeru in 2004. Today Tanjore is a family restaurant in Belleville.
+          </p>
+          <a href="/about" class="btn btn-ghost">Read Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Gallery</span>
+          <h2>A Glimpse Inside</h2>
+        </div>
+        <GalleryStrip images={galleryImages} />
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="order-strip">
+          <h2>Craving Tanjore?</h2>
+          <p>Order online for takeout, or call us on {site.phoneDisplay}.</p>
+          <a href={site.orderUrl} target="_blank" rel="noopener noreferrer" class="btn" style="background:#fff; color: var(--color-deep);">
+            Order Now
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" style="background: var(--color-surface-alt);">
+      <div class="container grid-2">
+        <div>
+          <span class="eyebrow">Visit Us</span>
+          <h2>Find Tanjore</h2>
+          <div class="contact-info-list">
+            <div>
+              <div class="contact-label">Address</div>
+              <div>{site.fullAddress}</div>
+            </div>
+            <div>
+              <div class="contact-label">Hours</div>
+              <div>{site.hours.display}</div>
+              <div style="margin-top: 8px;"><HoursBadge /></div>
+            </div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+            </div>
+          </div>
+        </div>
+        <iframe
+          class="contact-map"
+          src={site.mapEmbedUrl}
+          loading="lazy"
+          title={`Map to ${site.name}`}
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+  import "../scripts/reveal.ts";
+</script>
+</Base>
