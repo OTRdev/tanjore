@@ -14,7 +14,13 @@ for (const page of pages) {
 
   if (!/<title>[^<]{10,}<\/title>/.test(html)) bad(page, "missing/short <title>");
   if (!is404 && !/<meta name="description" content="[^"]{50,}/.test(html)) bad(page, "missing/short meta description");
-  if (!/<link rel="canonical"/.test(html)) bad(page, "no canonical");
+  const canon = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+  if (!canon) bad(page, "no canonical");
+  else {
+    if (/\.html$/.test(canon)) bad(page, `canonical ends in .html: ${canon}`);
+    const expected = "https://www.tanjore.ca" + (page === "index.html" ? "/" : "/" + page.replace(/\.html$/, ""));
+    if (canon !== expected) bad(page, `canonical ${canon} should be ${expected}`);
+  }
   if (!/og:image/.test(html)) bad(page, "no og:image");
   if (count(/<h1[\s>]/g) !== 1) bad(page, `expected 1 <h1>, found ${count(/<h1[\s>]/g)}`);
   if (count(/<main[\s>]/g) !== 1) bad(page, "expected exactly 1 <main>");
