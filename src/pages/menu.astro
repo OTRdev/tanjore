@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import MenuSection from "../components/MenuSection.astro";
-import { menu, combos, combosHeading, thalis } from "../data/menu";
+import { menu, combos, combosHeading, thalis, thalisHeading } from "../data/menu";
 import { menuJsonLd } from "../data/menuSchema";
 import { site } from "../data/site";
 ---
@@ -18,10 +18,18 @@ import { site } from "../data/site";
   <main id="main">
     <section class="section" style="padding-bottom: 0;">
       <div class="container" style="text-align:center;">
-        <span class="eyebrow">The Menu</span>
+        <span class="eyebrow">{site.tagline}</span>
         <h1 style="font-size: var(--fs-3xl); margin-bottom: var(--space-4);">Our Menu</h1>
         <p class="muted">
-          Prices subject to change. <a href={site.orderUrl} target="_blank" rel="noopener">Order online →</a>
+          Prices subject to change. <a href={site.orderUrl} target="_blank" rel="noopener noreferrer">Order online →</a>
+        </p>
+        <p class="menu-legend muted small">
+          <span><span class="veg-badge" aria-hidden="true"></span> Vegetarian</span>
+          <span class="diet-badge">Vegan</span>
+          <span class="spice-badge spice-mild">Mild</span>
+          <span class="spice-badge spice-medium">Medium</span>
+          <span class="spice-badge spice-hot"><span aria-hidden="true">🔥 </span>Spicy</span>
+          <span><span class="tag-badge">Dry</span> no gravy</span>
         </p>
       </div>
     </section>
@@ -30,10 +38,10 @@ import { site } from "../data/site";
       <div class="container menu-jumpnav-inner">
         <nav class="menu-jump-links" aria-label="Menu categories">
           {menu.map((section) => (
-            <a href={`#${section.id}`} class="menu-jump-link">{section.title}</a>
+            <a href={`#${section.id}`} class="menu-jump-link">{section.navLabel}</a>
           ))}
-          <a href="#combos" class="menu-jump-link">{combosHeading.title}</a>
-          <a href="#thalis" class="menu-jump-link">Lunch Thalis</a>
+          <a href="#combos" class="menu-jump-link">{combosHeading.navLabel}</a>
+          <a href="#thalis" class="menu-jump-link">{thalisHeading.navLabel}</a>
         </nav>
         <label class="veg-toggle" for="veg-toggle">
           <input type="checkbox" id="veg-toggle" />
@@ -67,8 +75,8 @@ import { site } from "../data/site";
 
       <section id="thalis" class="menu-section-block" data-menu-section style="border-bottom: none;">
         <div class="menu-section-head">
-          <h2>Lunch Thalis</h2>
-          <p class="muted small">Served {thalis.hours}.</p>
+          <h2>{thalisHeading.title}</h2>
+          <p class="muted small">Lunch thalis, served {thalis.hours}</p>
         </div>
         <ul class="menu-items">
           {thalis.items.map((item) => (
