@@ -227,6 +227,7 @@ main { display: block; }
 .menu-item-row.is-hidden { display: none; }
 .menu-item-name { font-weight: 600; }
 .menu-item-note { display: block; font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+.allergy-note { max-width: 640px; margin: var(--space-3) auto 0; color: var(--color-text-muted); font-style: italic; }
 .each-price { font-weight: 700; color: var(--color-deep); font-size: var(--fs-sm); }
 .menu-group { list-style: none; padding: var(--space-6) 0 var(--space-1); }
 .menu-group h3 { font-size: var(--fs-md); font-family: var(--font-heading); color: var(--color-deep); margin: 0; }

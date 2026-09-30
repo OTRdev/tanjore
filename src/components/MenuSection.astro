@@ -27,7 +27,7 @@ const spiceLabel: Record<Spice, string> = { mild: "Mild", medium: "Medium", hot:
       return (
         <>
           {newGroup && <li class="menu-group" aria-hidden="false"><h3>{item.group}</h3></li>}
-          <li class="menu-item-row" data-veg={item.veg ? "true" : "false"}>
+          <li class="menu-item-row" data-veg={item.veg ? "true" : "false"} data-gf={item.glutenFree ? "true" : "false"}>
             <span class="menu-item-name">
               {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
               {item.name}
