@@ -227,11 +227,13 @@ main { display: block; }
 .menu-item-row.is-hidden { display: none; }
 .menu-item-name { font-weight: 600; }
 .menu-item-note { display: block; font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: 2px; }
+.allergy-note { max-width: 640px; margin: var(--space-3) auto 0; color: var(--color-text-muted); font-style: italic; }
 .each-price { font-weight: 700; color: var(--color-deep); font-size: var(--fs-sm); }
 .menu-group { list-style: none; padding: var(--space-6) 0 var(--space-1); }
 .menu-group h3 { font-size: var(--fs-md); font-family: var(--font-heading); color: var(--color-deep); margin: 0; }
 .menu-group.is-hidden { display: none; }
 .menu-legend { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-3) var(--space-4); margin-top: var(--space-4); }
+.trace-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: #fff0c2; color: #7a5200; border: 1px solid #ecd28a; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
 .tag-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: #efe6d8; color: #5a4636; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
 .spice-badge { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 600; vertical-align: middle; }
 .spice-mild { background: #fdf0c9; color: #7a5b00; }

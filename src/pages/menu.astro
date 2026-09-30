@@ -26,10 +26,15 @@ import { site } from "../data/site";
         <p class="menu-legend muted small">
           <span><span class="veg-badge" aria-hidden="true"></span> Vegetarian</span>
           <span class="diet-badge">Vegan</span>
+          <span class="diet-badge">Gluten free</span>
           <span class="spice-badge spice-mild">Mild</span>
           <span class="spice-badge spice-medium">Medium</span>
           <span class="spice-badge spice-hot"><span aria-hidden="true">🔥 </span>Spicy</span>
           <span><span class="tag-badge">Dry</span> no gravy</span>
+        </p>
+        <p class="allergy-note small">
+          Gluten free means made without gluten-containing ingredients. Our kitchen also handles wheat,
+          so cross-contact is possible. Please tell us about any allergies when you order.
         </p>
       </div>
     </section>
@@ -47,6 +52,10 @@ import { site } from "../data/site";
           <input type="checkbox" id="veg-toggle" />
           Vegetarian only
         </label>
+        <label class="veg-toggle" for="gf-toggle">
+          <input type="checkbox" id="gf-toggle" />
+          Gluten free only
+        </label>
       </div>
     </div>
 
@@ -62,7 +71,7 @@ import { site } from "../data/site";
         </div>
         <ul class="menu-items">
           {combos.map((item) => (
-            <li class="menu-item-row" data-veg="false">
+            <li class="menu-item-row" data-veg="false" data-gf="false">
               <span class="menu-item-name">
                 {item.name}
                 <span class="menu-item-desc">Includes: {item.includes.join(", ")}</span>
@@ -80,7 +89,7 @@ import { site } from "../data/site";
         </div>
         <ul class="menu-items">
           {thalis.items.map((item) => (
-            <li class="menu-item-row" data-veg={item.veg ? "true" : "false"}>
+            <li class="menu-item-row" data-veg={item.veg ? "true" : "false"} data-gf="false">
               <span class="menu-item-name">
                 {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
                 {item.name}
