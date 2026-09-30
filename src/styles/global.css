@@ -238,7 +238,11 @@ main { display: block; }
 
 /* About page */
 .story-block { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: center; padding-block: var(--space-7); }
-.story-block img { border-radius: var(--radius-lg); }
+/* Photos keep their natural proportions (never cropped, so no faces get cut off). Portrait shots are capped in width. */
+.story-block img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
+.story-media { display: flex; justify-content: center; }
+img.portrait { width: 100%; max-width: 380px; height: auto; margin-inline: auto; }
+.story-block img.portrait { max-width: 380px; }
 .story-block:nth-child(even) .story-media { order: 2; }
 @media (max-width: 900px) {
   .story-block { grid-template-columns: 1fr; }
