@@ -1,46 +1,54 @@
-Official Tanjore.ca Website
+# Tanjore Indian Cuisine
 
-# Tech Stack
+Official website for Tanjore Indian Cuisine, Belleville, Ontario: **https://www.tanjore.ca**
 
-- React
-- React-Router
-- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-- Hosted on Github Pages
+Static site built with [Astro](https://astro.build). No database or server needed.
+Hosted on GitHub Pages and deployed automatically by GitHub Actions.
 
-## Local Setup
+## Everyday edits
 
-In the project directory, you can run:
+| To change | Edit |
+| --- | --- |
+| Dish names, descriptions, prices, combos, thalis | `src/data/menu.ts` |
+| Hours, phone, address, order link, social links | `src/data/site.ts` |
+| Photos | Replace files in `src/assets/` (same filename) |
 
-`npm install`
-`npm run start`
+The menu page, home page and Google structured data all read from these files, so
+one edit updates everything. Push to `main` and the site redeploys.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Local development
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+pnpm install
+pnpm dev            # http://localhost:4321
+pnpm build          # outputs to dist/
+node scripts/verify-dist.mjs   # sanity-checks the built site (links, SEO, JSON-LD, scripts)
+```
 
-## Deployment to Github Pages
+## Project layout
 
-We use Github Pages for deployment. The site gets deployed at tanjore.ca which points to devcore-ca.github.io
-Initial setup
+```
+src/
+  data/         site.ts, menu.ts, menuSchema.ts (menu -> schema.org JSON-LD)
+  layouts/      Base.astro (head, SEO tags, Restaurant JSON-LD, skip link)
+  components/   Header, Footer, Hero, DishCard, MenuSection, HoursBadge, GalleryStrip
+  pages/        index, menu, about, contact, 404
+  scripts/      small vanilla-TS scripts (mobile nav, hours badge, veg filter, reveal)
+  styles/       global.css (design tokens + styles), fonts.css (self-hosted fonts)
+  assets/       images (auto-optimized to WebP at build), fonts
+public/         favicon, icons, og-image, robots.txt, CNAME
+scripts/        make-icons.mjs (regenerate icons/og image), verify-dist.mjs
+```
 
-Our deployment process is as follows:
+## Deployment (GitHub Pages)
 
-1. Make sure `package.json` has `"homepage"` set to `"https://tanjore.ca"`.
-1. Merge commits via PRs into `main` branch
-1. Checkout main branch locally
-1. Git pull
-1. Run `npm run deploy` from main branch
-1. There is a special branch `gh-pages` which will auto deploy whatever is on main, onto tanjore.ca. You don't need to manually touch the `gh-pages` branch at all for deployment.
-1. Open Github settings: https://github.com/devcore-ca/tanjore/settings/pages
-1. Inside the "Custom Domain" field, we should put `tanjore.ca` and hit Save. Must do after every deploy.
-1. Check https://tanjore.ca/ and devcore-ca.github.io/tanjore
+1. Repo Settings, Pages, Source: **GitHub Actions** (one-time).
+2. Custom domain: `www.tanjore.ca` (the `public/CNAME` file sets this). DNS for `www`
+   must point to GitHub Pages, and the apex `tanjore.ca` should redirect to `www`.
+3. Push to `main`. `.github/workflows/deploy.yml` builds and publishes.
 
-### Errors during deployment
+## Notes
 
-| Failed to compile
-
-- Run `npm install`
-
-We're using `gh-pages`
+- Scripts must be loaded with `<script>import "../scripts/x.ts";</script>` so Astro bundles
+  them. A `<script type="module" src="...ts">` tag is not processed and will 404 in production.
+- To regenerate favicons and the social preview image: `node scripts/make-icons.mjs`.

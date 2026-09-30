@@ -1,0 +1,59 @@
+---
+// src/components/Header.astro
+import { Image } from "astro:assets";
+import { site } from "../data/site";
+import logo from "../assets/brand/logo.png";
+
+const pathname = Astro.url.pathname;
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/menu", label: "Menu" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="/" class="nav-logo" aria-label={`${site.name} — home`}>
+      <Image src={logo} alt={site.name} width={160} height={146} />
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Toggle navigation menu"
+    >
+      ☰
+    </button>
+
+    <nav id="primary-nav" class="nav-links" aria-label="Primary">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="nav-link"
+          aria-current={pathname === item.href ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={`tel:${site.phone}`} class="nav-link nav-tel">Call {site.phoneDisplay}</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href={`tel:${site.phone}`} class="nav-link" aria-label={`Call ${site.phoneDisplay}`}>
+        {site.phoneDisplay}
+      </a>
+      <a href={site.orderUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Order Online
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import "../scripts/nav.ts";
+</script>

@@ -1,0 +1,97 @@
+---
+// src/pages/menu.astro
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MenuSection from "../components/MenuSection.astro";
+import { menu, combos, combosHeading, thalis } from "../data/menu";
+import { menuJsonLd } from "../data/menuSchema";
+import { site } from "../data/site";
+---
+
+<Base
+  title="Menu | Tanjore Indian Cuisine, Belleville ON"
+  description="Full menu with prices: butter chicken, biryanis, tandoori, fresh naan, vegetarian dishes, seafood, lunch thalis and combos. Takeout and dine-in in Belleville, Ontario."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(menuJsonLd())} />
+  <Header />
+  <main id="main">
+    <section class="section" style="padding-bottom: 0;">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow">The Menu</span>
+        <h1 style="font-size: var(--fs-3xl); margin-bottom: var(--space-4);">Our Menu</h1>
+        <p class="muted">
+          Prices subject to change. <a href={site.orderUrl} target="_blank" rel="noopener">Order online →</a>
+        </p>
+      </div>
+    </section>
+
+    <div class="menu-jumpnav">
+      <div class="container menu-jumpnav-inner">
+        <nav class="menu-jump-links" aria-label="Menu categories">
+          {menu.map((section) => (
+            <a href={`#${section.id}`} class="menu-jump-link">{section.title}</a>
+          ))}
+          <a href="#combos" class="menu-jump-link">{combosHeading.title}</a>
+          <a href="#thalis" class="menu-jump-link">Lunch Thalis</a>
+        </nav>
+        <label class="veg-toggle" for="veg-toggle">
+          <input type="checkbox" id="veg-toggle" />
+          Vegetarian only
+        </label>
+      </div>
+    </div>
+
+    <div class="container">
+      {menu.map((section) => (
+        <MenuSection section={section} />
+      ))}
+
+      <section id="combos" class="menu-section-block" data-menu-section>
+        <div class="menu-section-head">
+          <h2>{combosHeading.title}</h2>
+          <p class="muted small">{combosHeading.subtitle}</p>
+        </div>
+        <ul class="menu-items">
+          {combos.map((item) => (
+            <li class="menu-item-row" data-veg="false">
+              <span class="menu-item-name">
+                {item.name}
+                <span class="menu-item-desc">Includes: {item.includes.join(", ")}</span>
+              </span>
+              <span class="menu-item-price">${item.price.toFixed(2)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="thalis" class="menu-section-block" data-menu-section style="border-bottom: none;">
+        <div class="menu-section-head">
+          <h2>Lunch Thalis</h2>
+          <p class="muted small">Served {thalis.hours}.</p>
+        </div>
+        <ul class="menu-items">
+          {thalis.items.map((item) => (
+            <li class="menu-item-row" data-veg={item.veg ? "true" : "false"}>
+              <span class="menu-item-name">
+                {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
+                {item.name}
+              </span>
+              <span class="menu-item-price">${item.price.toFixed(2)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <p class="price-note">Prices are in Canadian dollars and subject to change. Please confirm current pricing when ordering.</p>
+    </div>
+  </main>
+  <Footer />
+
+  <script>
+  import "../scripts/veg-toggle.ts";
+</script>
+  <script>
+  import "../scripts/jump-nav.ts";
+</script>
+</Base>

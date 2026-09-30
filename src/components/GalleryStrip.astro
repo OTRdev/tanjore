@@ -1,0 +1,18 @@
+---
+// src/components/GalleryStrip.astro
+import { Image } from "astro:assets";
+
+export interface Props {
+  images: { src: ImageMetadata; alt: string }[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="gallery-strip" role="list">
+  {images.map((img) => (
+    <div role="listitem">
+      <Image src={img.src} alt={img.alt} width={400} height={400} loading="lazy" />
+    </div>
+  ))}
+</div>

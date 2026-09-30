@@ -1,0 +1,49 @@
+---
+// src/components/Hero.astro
+import { Image } from "astro:assets";
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  imageAlt,
+  ctaPrimaryLabel = "Order Online",
+  ctaPrimaryHref,
+  ctaSecondaryLabel,
+  ctaSecondaryHref,
+} = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-media">
+    <Image src={image} alt={imageAlt} width={1600} height={1067} loading="eager" fetchpriority="high" />
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <h1>{title}</h1>
+    <p>{subtitle}</p>
+    <div class="hero-ctas">
+      {ctaPrimaryHref && (
+        <a href={ctaPrimaryHref} target="_blank" rel="noopener" class="btn btn-primary">
+          {ctaPrimaryLabel}
+        </a>
+      )}
+      {ctaSecondaryHref && (
+        <a href={ctaSecondaryHref} class="btn btn-outline">
+          {ctaSecondaryLabel}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+// Renders one section of src/data/menu.ts. Prices come from menu.ts only.
+import type { MenuSection as MenuSectionType } from "../data/menu";
+import { priceOf } from "../data/menu";
+
+export interface Props {
+  section: MenuSectionType;
+}
+
+const { section } = Astro.props;
+const money = (n?: number) => (n === undefined ? "" : `$${n.toFixed(2)}`);
+---
+
+<section id={section.id} class="menu-section-block" data-menu-section>
+  <div class="menu-section-head">
+    <h2>{section.title}</h2>
+    {section.subtitle && <p class="muted small">{section.subtitle}</p>}
+    {section.footnote && <p class="muted small">{section.footnote}</p>}
+  </div>
+  <ul class="menu-items">
+    {section.items.map((item) => {
+      // In flat-price sections the price is in the footnote, so don't repeat it on every row.
+      const price = section.price === undefined ? money(priceOf(section, item)) : "";
+      return (
+        <li class="menu-item-row" data-veg={item.veg ? "true" : "false"}>
+          <span class="menu-item-name">
+            {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
+            {item.name}
+            {item.vegan && <span class="diet-badge">Vegan</span>}
+            {item.glutenFree && <span class="diet-badge">Gluten free</span>}
+            {item.note && <span class="menu-item-note">{item.note}</span>}
+            {item.description && <span class="menu-item-desc">{item.description}</span>}
+          </span>
+          {price && <span class="menu-item-price">{price}</span>}
+        </li>
+      );
+    })}
+  </ul>
+</section>
