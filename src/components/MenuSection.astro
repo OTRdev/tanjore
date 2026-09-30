@@ -33,6 +33,7 @@ const spiceLabel: Record<Spice, string> = { mild: "Mild", medium: "Medium", hot:
               {item.name}
               {item.vegan && <span class="diet-badge">Vegan</span>}
               {item.glutenFree && <span class="diet-badge">Gluten free</span>}
+              {item.glutenTraces && <span class="trace-badge" title="No gluten ingredients, but may contain traces of gluten">May contain traces of gluten</span>}
               {item.dry && <span class="tag-badge">Dry</span>}
               {item.spice && (
                 <span class={`spice-badge spice-${item.spice}`}>

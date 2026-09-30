@@ -20,6 +20,8 @@ export interface MenuItem {
   veg?: boolean;
   vegan?: boolean;
   glutenFree?: boolean;
+  /** No gluten ingredients, but may contain traces. Shown as a notice; NOT counted as gluten free. */
+  glutenTraces?: boolean;
   spice?: Spice;
   dry?: boolean;
   /** Sub-heading this item sits under inside its section. Items with the same group must be adjacent. */
@@ -50,9 +52,9 @@ export const menu: MenuSection[] = [
     subtitle: "Let's begin (Starters)",
     items: [
       { name: "Pani Poori", description: "Hollow puri, deep-fried crisp flatbread filled with flavored water", price: 6, veg: true },
-      { name: "Onion Bhaji", description: "Onion fritters, gram batter", price: 7, veg: true },
+      { name: "Onion Bhaji", description: "Onion fritters, gram batter", price: 7, veg: true, glutenTraces: true },
       { name: "Papdi Chaat", description: "Fried flour crispies", price: 6, veg: true },
-      { name: "Vegetable Pakoras", description: "Assorted vegetables in a crisp split gram batter", price: 6, veg: true },
+      { name: "Vegetable Pakoras", description: "Assorted vegetables in a crisp split gram batter", price: 6, veg: true, glutenTraces: true },
       { name: "Chicken Pakoras", description: "Chicken fritters in a crisp split gram batter", price: 7 },
       { name: "Paneer Pakoras", description: "Cottage cheese fritters in a crisp gram batter", price: 7, veg: true },
       { name: "Vegetable Samosa (2pc)", description: "Crisp pastry filled with spiced potatoes & peas", price: 4, veg: true },
