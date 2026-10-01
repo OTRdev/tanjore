@@ -310,3 +310,10 @@ img.portrait { width: 100%; max-width: 380px; height: auto; margin-inline: auto;
   .mobile-bar a.mobile-bar-order { background: var(--color-action); }
   body { padding-bottom: 50px; }
 }
+
+/* "Why Tanjore" trust band */
+.trust-grid { gap: var(--space-6); }
+.trust-item { text-align: center; padding-inline: var(--space-3); }
+.trust-big { display: block; font-family: var(--font-heading); font-size: var(--fs-xl); font-weight: 700; color: var(--color-deep); line-height: 1.1; margin-bottom: var(--space-2); }
+.trust-item h3 { font-size: var(--fs-base); margin: 0 0 var(--space-2); }
+.trust-item p { margin: 0; color: var(--color-text-muted); font-size: var(--fs-sm); }

@@ -1,6 +1,7 @@
 // Single source of truth for business facts. Used by the UI and the JSON-LD.
 export const site = {
   name: "Tanjore Indian Cuisine",
+  founded: "2004",
   tagline: "Authentic Indian Cuisine · Family recipes since 2004",
   url: "https://www.tanjore.ca",
   phone: "+1-613-967-5967",
@@ -32,5 +33,5 @@ export const site = {
     display: "Tuesday to Sunday, 12 PM to 7 PM",
   },
   description:
-    "Family-run authentic North Indian restaurant in Belleville, Ontario. Butter chicken, biryanis, tandoori, fresh naan, vegetarian dishes and lunch thalis. Dine in, takeout and online ordering.",
+    "Family-run North Indian restaurant in Belleville, Ontario for over 20 years. Same chef, same recipes: butter chicken, biryanis, tandoori, fresh naan and lunch thalis. Dine in, takeout and online ordering.",
 } as const;
