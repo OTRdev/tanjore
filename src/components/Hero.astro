@@ -27,7 +27,7 @@ const {
 
 <section class="hero">
   <div class="hero-media">
-    <Image src={image} alt={imageAlt} width={1600} height={1067} loading="eager" fetchpriority="high" />
+    <Image src={image} alt={imageAlt} width={1600} height={1067} widths={[480, 768, 1024, 1600]} sizes="100vw" quality={72} loading="eager" fetchpriority="high" />
   </div>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="container hero-content">

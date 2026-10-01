@@ -12,7 +12,7 @@ const { images } = Astro.props;
 <div class="gallery-strip" role="list">
   {images.map((img) => (
     <div role="listitem">
-      <Image src={img.src} alt={img.alt} width={400} height={400} loading="lazy" />
+      <Image src={img.src} alt={img.alt} width={400} height={400} quality={70} loading="lazy" />
     </div>
   ))}
 </div>

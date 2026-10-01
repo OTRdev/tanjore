@@ -15,7 +15,7 @@ import { combos, thalis } from "../data/menu";
 import heroImage from "../assets/photos/butter-chicken-biryani-naan.jpg";
 import tandooriPhoto from "../assets/photos/tandoori-chicken.jpg";
 import spreadPhoto from "../assets/photos/spread-pink.jpg";
-import kadaiPhoto from "../assets/photos/kadai-bowls.jpg";
+import butterChickenPhoto from "../assets/photos/butter-chicken-card.jpg";
 import rak1 from "../assets/story/rak1.png";
 
 import img1 from "../assets/food/IMG_1.png";
@@ -29,7 +29,7 @@ import img8 from "../assets/food/IMG_8.png";
 
 // Descriptions reuse the menu wording so nothing is claimed that the menu doesn't say.
 const signatureDishes = [
-  { name: "Butter Chicken", desc: "Boneless tandoori chicken cooked in an exquisite creamy tomato sauce.", image: kadaiPhoto, alt: "Butter chicken and curries served in copper karahi bowls" },
+  { name: "Butter Chicken", desc: "Boneless tandoori chicken cooked in an exquisite creamy tomato sauce.", image: butterChickenPhoto, alt: "Butter chicken in a steel bowl with a swirl of cream" },
   { name: "Tandoori Chicken", desc: "Marinated chicken cooked in a tandoor. Half or full.", image: tandooriPhoto, alt: "Tandoori chicken with onions in a takeout container" },
   { name: "Naan, Biryani & Curry", desc: "Fresh tandoori naan, biryani and butter chicken.", image: spreadPhoto, alt: "Overhead view of rice, pakoras, gulab jamun, butter chicken and naan" },
   { name: "Chicken Biryani", desc: "Marinated chicken cooked with basmati rice and spices.", image: img2, alt: "Chicken biryani in a white serving dish" },
@@ -63,6 +63,18 @@ const galleryImages = [
       ctaSecondaryLabel="View Menu"
       ctaSecondaryHref="/menu"
     />
+
+    <div class="quick-bar">
+      <div class="container quick-bar-inner">
+        <HoursBadge />
+        <span class="quick-item">{site.hours.display}</span>
+        <span class="quick-item">{site.fullAddress}</span>
+        <span class="quick-links">
+          <a href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a>
+          <a href={site.directionsUrl} target="_blank" rel="noopener noreferrer">Get directions</a>
+        </span>
+      </div>
+    </div>
 
     <section class="section reveal">
       <div class="container">

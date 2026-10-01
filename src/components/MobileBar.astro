@@ -1,0 +1,10 @@
+---
+// Slim action bar pinned to the bottom of the screen on phones: the three things a hungry first-time visitor wants.
+import { site } from "../data/site";
+---
+
+<nav class="mobile-bar" aria-label="Quick actions">
+  <a href={`tel:${site.phone}`}>Call</a>
+  <a href={site.directionsUrl} target="_blank" rel="noopener noreferrer">Directions</a>
+  <a href={site.orderUrl} target="_blank" rel="noopener noreferrer" class="mobile-bar-order">Order online</a>
+</nav>

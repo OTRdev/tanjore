@@ -14,7 +14,7 @@ const { name, description, image, alt, wide = false } = Astro.props;
 ---
 
 <div class="dish-card" style={wide ? "grid-column: span 2;" : undefined}>
-  <Image src={image} alt={alt} width={480} height={360} loading="lazy" />
+  <Image src={image} alt={alt} width={480} height={360} quality={70} loading="lazy" />
   <div class="dish-card-body">
     <h3>{name}</h3>
     <p>{description}</p>
