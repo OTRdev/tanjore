@@ -7,6 +7,7 @@ Static Astro site for a family-run North Indian restaurant in Belleville, Ontari
 - `pnpm install` / `pnpm dev` (local preview) / `pnpm build` (outputs `dist/`)
 - `pnpm exec astro check` (type check, must be 0 errors)
 - `node scripts/verify-dist.mjs` (checks the built site: links, SEO tags, canonicals, JSON-LD, scripts load)
+- `node scripts/check-url-variants.mjs` (after build: /menu/, /Menu, /menu.html, old #/routes all land on the right page)
 - `node scripts/menu-diff.mjs [ref]` (what changed in the menu vs a git ref; default `origin/main`)
 - `node scripts/make-icons.mjs` (regenerates favicons and the social preview image)
 
@@ -17,7 +18,7 @@ Static Astro site for a family-run North Indian restaurant in Belleville, Ontari
 - `src/pages/`, `src/components/`, `src/styles/global.css`, `src/scripts/` (small vanilla scripts), `src/assets/` (images).
 
 ## Rules (these come from the owner: follow them every time)
-1. **Never change a price unless the owner asked for that exact change.** After any menu edit, run
+1. **Never change a price unless the owner asked for that exact change.** Curries are flat-priced per section (Veggie Vibes, Meat Ki Mehfil) and stay flat; biryanis and other items are priced per dish. After any menu edit, run
    `node scripts/menu-diff.mjs` and show the result. A section with a flat `price` (vegetarian, meat) changes every dish in it.
 2. **Never guess dietary or allergen info.** `veg`, `vegan`, `glutenFree`, `glutenTraces` are set only when the owner confirmed
    them. A missing flag means "not confirmed", not "no". Gluten-free dishes use the owner's rule; fried starters, breads,
