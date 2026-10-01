@@ -46,7 +46,7 @@ const restaurantLd = {
 };
 
 // The old site used hash URLs (tanjore.ca/#/menu). Send those visitors to the real pages.
-const legacyHashRedirect = `document.documentElement.classList.add("js");setTimeout(function(){if(!document.documentElement.hasAttribute("data-reveal-ready"))document.documentElement.classList.remove("js")},4000);(function(){var h=location.hash;if(h.indexOf("#/")!==0)return;var m={"/menu":"/menu","/about":"/about","/contact":"/contact"};var k=h.slice(1).toLowerCase().replace(/\\/+$/,"");location.replace(m[k]||"/");})();`;
+const legacyHashRedirect = `document.documentElement.classList.add("js");setTimeout(function(){if(!document.documentElement.hasAttribute("data-reveal-ready"))document.documentElement.classList.remove("js")},4000);(function(){var p=location.pathname,c=p.replace(/\\/index\\.html$/,"/").replace(/\\.html$/,"");if(c.length>1)c=c.replace(/\\/+$/,"");var l=c.toLowerCase();if(l==="/menu"||l==="/about"||l==="/contact")c=l;else if(l==="/gallery"||l==="/home"||l==="/index")c="/";if(c!==p)location.replace(c+location.search+location.hash)})();(function(){var h=location.hash;if(h.indexOf("#/")!==0)return;var m={"/menu":"/menu","/about":"/about","/contact":"/contact"};var k=h.slice(1).toLowerCase().replace(/\\/+$/,"");location.replace(m[k]||"/");})();`;
 ---
 <!doctype html>
 <html lang="en-CA">
