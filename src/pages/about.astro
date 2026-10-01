@@ -4,6 +4,9 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import tajMural from "../assets/inside/taj-mural.jpg";
+import maskShelf from "../assets/inside/mask-shelf.jpg";
+import menuStand from "../assets/inside/menu-stand.jpg";
 import rak1 from "../assets/story/rak1.png";
 import rak2 from "../assets/story/rak2.png";
 import rak3 from "../assets/story/rak3.png";
@@ -26,7 +29,7 @@ import rak4 from "../assets/story/rak4.png";
     <div class="container">
       <div class="story-block">
         <div class="story-media">
-          <Image src={rak1} alt="Archive photo of a chef holding a certificate in a restaurant kitchen" width={800} class="portrait" />
+          <Image src={rak1} alt="Archive photo of a chef holding a certificate in a restaurant kitchen" width={760} quality={65} class="portrait" loading="eager" fetchpriority="high" />
         </div>
         <div>
           <h2>From Madhya Pradesh to Canada</h2>
@@ -40,7 +43,7 @@ import rak4 from "../assets/story/rak4.png";
 
       <div class="story-block">
         <div class="story-media">
-          <Image src={rak2} alt="Archive photo of a chef at the tandoor with skewered chicken" width={800} class="portrait" />
+          <Image src={rak2} alt="Archive photo of a chef at the tandoor with skewered chicken" width={760} quality={65} class="portrait" />
         </div>
         <div>
           <h2>Over a Decade as Head Chef</h2>
@@ -53,7 +56,7 @@ import rak4 from "../assets/story/rak4.png";
 
       <div class="story-block">
         <div class="story-media">
-          <Image src={rak3} alt="Archive photo of a chef working in a restaurant kitchen" width={1000} />
+          <Image src={rak3} alt="Archive photo of a chef working in a restaurant kitchen" width={1000} quality={65} />
         </div>
         <div>
           <h2>Tanjore Catering &amp; Sweets, 2004</h2>
@@ -66,7 +69,7 @@ import rak4 from "../assets/story/rak4.png";
 
       <div class="story-block">
         <div class="story-media">
-          <Image src={rak4} alt="Archive photo of a chef with colleagues and friends at a restaurant" width={1000} />
+          <Image src={rak4} alt="Archive photo of a chef with colleagues and friends at a restaurant" width={1000} quality={65} />
         </div>
         <div>
           <h2>A Dining Room of Our Own, 2017</h2>
@@ -80,6 +83,26 @@ import rak4 from "../assets/story/rak4.png";
         </div>
       </div>
     </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">The Restaurant</span>
+          <h2>Inside Tanjore</h2>
+        </div>
+        <div class="inside-grid">
+          <figure>
+            <Image src={tajMural} alt="Crystal Taj Mahal mural in a gold frame on the brick wall" width={640} quality={70} loading="lazy" />
+          </figure>
+          <figure>
+            <Image src={maskShelf} alt="Carved turbaned mask and a painted Ganesh figure on a shelf" width={640} quality={70} loading="lazy" />
+          </figure>
+          <figure>
+            <Image src={menuStand} alt="Tanjore take-out menu stand beside the kitchen counter" width={640} quality={70} loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </Base>

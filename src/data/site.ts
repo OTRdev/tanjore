@@ -18,6 +18,7 @@ export const site = {
     instagram: "https://www.instagram.com/tanjoreindiancuisine/",
   },
   fullAddress: "151 Pinnacle St, Belleville, ON K8N 3A5",
+  directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=151+Pinnacle+St,+Belleville,+ON+K8N+3A5",
   // Plain Google Maps embed, no API key needed.
   mapEmbedUrl: "https://www.google.com/maps?q=151+Pinnacle+St,+Belleville,+ON+K8N+3A5&output=embed",
   // Confirmed by owner: closes 7 PM, closed Mondays.

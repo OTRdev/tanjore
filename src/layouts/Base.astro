@@ -3,6 +3,7 @@ import "../styles/global.css";
 import frauncesUrl from "../assets/fonts/fraunces-latin-wght-normal.woff2?url";
 import interUrl from "../assets/fonts/inter-latin-wght-normal.woff2?url";
 import { site } from "../data/site";
+import MobileBar from "../components/MobileBar.astro";
 
 interface Props { title: string; description?: string; image?: string; noindex?: boolean }
 const { title, description = site.description, image = "/og-image.jpg", noindex = false } = Astro.props;
@@ -82,5 +83,6 @@ const legacyHashRedirect = `document.documentElement.classList.add("js");setTime
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
     <slot />
+    <MobileBar />
   </body>
 </html>

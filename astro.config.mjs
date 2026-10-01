@@ -5,6 +5,6 @@ export default defineConfig({
   site: "https://www.tanjore.ca",
   output: "static",
   trailingSlash: "never",
-  build: { format: "file" },
+  build: { format: "file", inlineStylesheets: "always" },
   integrations: [sitemap()],
 });
