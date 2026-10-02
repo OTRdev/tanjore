@@ -198,6 +198,7 @@ export const thalisHeading = { title: "Thali Time", navLabel: "Thalis" };
 
 export const thalis = {
   hours: "12 PM to 3 PM",
+  note: "The dishes change daily, but every thali comes with the same set of items.",
   items: [
     { name: "Vegetable Thali", description: "A set lunch plate: 3 vegetable dishes, rice, salad, a sweet and one naan or roti.", price: 8, veg: true },
     { name: "Non-Vegetable Thali", description: "A set lunch plate: 2 meat dishes, 1 vegetable dish, rice, naan, salad and a sweet.", price: 10 },
