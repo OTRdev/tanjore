@@ -94,8 +94,7 @@ export const menu: MenuSection[] = [
       { name: "Aloo Paratha", description: "Flaky whole wheat bread stuffed with potatoes", price: 4, veg: true, group: "Roti & Parathas" },
       { name: "Paneer Paratha", description: "Tandoori bread stuffed with cottage cheese & herbs", price: 5, veg: true, group: "Roti & Parathas" },
       { name: "Aloo Paratha + Dahi", description: "Potato-stuffed paratha served with cooling yogurt", price: 6, veg: true, group: "Combos" },
-      // Held back until the owner provides a price. To add it, uncomment and set `price`:
-      // { name: "Channa Kulcha", description: "Tandoori kulcha topped with spiced chana & fresh onion salad", price: 0, veg: true, group: "Combos" },
+      { name: "Channa Kulcha", description: "Tandoori kulcha topped with spiced chana & fresh onion salad", price: 8, veg: true, group: "Combos" },
     ],
   },
   {
@@ -200,8 +199,8 @@ export const thalisHeading = { title: "Thali Time", navLabel: "Thalis" };
 export const thalis = {
   hours: "12 PM to 3 PM",
   items: [
-    { name: "Vegetable Thali", price: 8, veg: true },
-    { name: "Non-Vegetable Thali", price: 10 },
+    { name: "Vegetable Thali", description: "A set lunch plate: 3 vegetable dishes, rice, salad, a sweet and one naan or roti.", price: 8, veg: true },
+    { name: "Non-Vegetable Thali", description: "A set lunch plate: 2 meat dishes, 1 vegetable dish, rice, naan, salad and a sweet.", price: 10 },
   ],
 };
 
