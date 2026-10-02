@@ -37,7 +37,7 @@ export function menuJsonLd() {
       ...thalis.items.map((t) => ({
         "@type": "MenuItem",
         name: t.name,
-        description: `Lunch thali, ${thalis.hours}`,
+        description: `${t.description} Served ${thalis.hours}.`,
         ...(t.veg && { suitableForDiet: "https://schema.org/VegetarianDiet" }),
         offers: offer(t.price),
       })),

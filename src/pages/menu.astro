@@ -93,6 +93,7 @@ import { site } from "../data/site";
               <span class="menu-item-name">
                 {item.veg && <span class="veg-badge" title="Vegetarian"><span class="visually-hidden">Vegetarian: </span></span>}
                 {item.name}
+                {item.description && <span class="menu-item-desc">{item.description}</span>}
               </span>
               <span class="menu-item-price">${item.price.toFixed(2)}</span>
             </li>
