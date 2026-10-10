@@ -10,7 +10,28 @@
       "description": "Heavy hooded sweatshirt: the Butter Chicken King rooster on the front, the Tanjore Indian Cuisine badge on the back.",
       "price": 49.99,
       "url": null,
-      "image": null
+      "images": [
+        {
+          "file": "hoodie-orange-lifestyle.jpg",
+          "alt": "Orange Butter Chicken King hoodie worn on a sofa"
+        },
+        {
+          "file": "hoodie-orange-front.jpg",
+          "alt": "Orange Butter Chicken King hoodie, front"
+        },
+        {
+          "file": "hoodie-orange-back.jpg",
+          "alt": "Orange hoodie, back, with the Tanjore Indian Cuisine badge"
+        },
+        {
+          "file": "hoodie-orange-model.jpg",
+          "alt": "Orange Butter Chicken King hoodie worn by a model"
+        },
+        {
+          "file": "hoodie-orange-folded.jpg",
+          "alt": "Orange hoodie folded to show the Butter Chicken King print"
+        }
+      ]
     },
     {
       "id": "bck-boxy-tee",
@@ -18,7 +39,7 @@
       "description": "Relaxed, oversized boxy-fit tee with the Butter Chicken King rooster on the front.",
       "price": 32.99,
       "url": null,
-      "image": null
+      "images": []
     },
     {
       "id": "classic-tee",
@@ -26,7 +47,7 @@
       "description": "Soft everyday tee with the Tanjore Indian Cuisine badge: family recipes since 2004.",
       "price": 24.99,
       "url": null,
-      "image": null
+      "images": []
     }
   ]
 }

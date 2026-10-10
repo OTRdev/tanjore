@@ -8,7 +8,10 @@ import merch from "../data/merch.json";
 import { site } from "../data/site";
 
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/merch/*.{png,jpg,jpeg,webp}", { eager: true });
-const imageFor = (file: string | null): ImageMetadata | undefined => (file ? images[`../assets/merch/${file}`]?.default : undefined);
+const imageFor = (file: string): ImageMetadata | undefined => images[`../assets/merch/${file}`]?.default;
+// Only keep gallery pictures whose file actually exists in src/assets/merch/.
+const galleryOf = (p: (typeof merch.products)[number]) =>
+  p.images.map((i) => ({ src: imageFor(i.file), alt: i.alt })).filter((i): i is { src: ImageMetadata; alt: string } => !!i.src);
 const money = (n: number) => `US$${n.toFixed(2)}`;
 ---
 
@@ -33,16 +36,36 @@ const money = (n: number) => `US$${n.toFixed(2)}`;
       <div class="container">
         <div class="merch-grid">
           {merch.products.map((p) => {
-            const img = imageFor(p.image);
+            const gallery = galleryOf(p);
             return (
-              <article class="merch-card">
+              <article class="merch-card" data-merch-card>
                 <div class="merch-photo">
-                  {img ? (
-                    <Image src={img} alt={p.name} width={720} quality={75} loading="lazy" />
+                  {gallery.length ? (
+                    gallery.map((g, i) => (
+                      <Image
+                        src={g.src}
+                        alt={g.alt}
+                        width={720}
+                        quality={75}
+                        loading={i === 0 ? "eager" : "lazy"}
+                        class="merch-slide"
+                        data-slide
+                        hidden={i !== 0}
+                      />
+                    ))
                   ) : (
                     <span class="merch-photo-empty">Photo coming soon</span>
                   )}
                 </div>
+                {gallery.length > 1 && (
+                  <div class="merch-thumbs" role="group" aria-label={`${p.name} photos`}>
+                    {gallery.map((g, i) => (
+                      <button type="button" class="merch-thumb" data-thumb={i} aria-pressed={i === 0 ? "true" : "false"} aria-label={`Show photo ${i + 1}: ${g.alt}`}>
+                        <Image src={g.src} alt={g.alt} width={120} height={120} quality={60} loading="lazy" />
+                      </button>
+                    ))}
+                  </div>
+                )}
                 <div class="merch-body">
                   <h2>{p.name}</h2>
                   <p class="muted small">{p.description}</p>
@@ -84,4 +107,8 @@ const money = (n: number) => `US$${n.toFixed(2)}`;
     </section>
   </main>
   <Footer />
+
+  <script>
+    import "../scripts/merch-gallery.ts";
+  </script>
 </Base>

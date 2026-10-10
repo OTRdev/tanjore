@@ -335,3 +335,8 @@ img.portrait { width: 100%; max-width: 380px; height: auto; margin-inline: auto;
 .merch-policy { max-width: 680px; margin: var(--space-7) auto 0; }
 .merch-policy h2 { font-size: var(--fs-lg); margin-bottom: var(--space-3); }
 .merch-policy ul { margin: 0; padding-left: 1.2em; color: var(--color-text-muted); font-size: var(--fs-sm); display: grid; gap: var(--space-2); }
+.merch-photo .merch-slide[hidden] { display: none; }
+.merch-thumbs { display: flex; gap: var(--space-2); padding: var(--space-3) var(--space-5) 0; flex-wrap: wrap; }
+.merch-thumb { width: 56px; height: 56px; padding: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; background: #fff; cursor: pointer; }
+.merch-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.merch-thumb[aria-pressed="true"] { border-color: var(--color-action); }
