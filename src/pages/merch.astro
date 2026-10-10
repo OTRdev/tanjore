@@ -58,11 +58,28 @@ const money = (n: number) => `US$${n.toFixed(2)}`;
           })}
         </div>
 
-        <p class="merch-note muted small">
-          Prices are in US dollars, and shipping is calculated at checkout. Every piece is printed to order by our print
-          partner and shipped to you; production and delivery times are shown at checkout. Questions? Call us on
-          <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
-        </p>
+        <section class="merch-policy" aria-labelledby="merch-policy-title">
+          <h2 id="merch-policy-title">Shipping &amp; returns</h2>
+          <ul>
+            <li>Prices are in US dollars, and shipping is calculated at checkout.</li>
+            <li>
+              Every item is printed to order, so please allow a few business days for production, plus shipping time.
+              Delivery times and costs are shown at checkout.
+            </li>
+            <li>
+              If your item arrives damaged, misprinted or defective, contact us within 30 days of delivery with a photo
+              and we will replace or refund it.
+            </li>
+            <li>
+              Because items are made to order, we can't accept returns or exchanges for size or change of mind. Please
+              check the size chart before ordering.
+            </li>
+            <li>
+              Questions? Call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a> or email
+              <a href={`mailto:${merch.supportEmail}`}>{merch.supportEmail}</a>.
+            </li>
+          </ul>
+        </section>
       </div>
     </section>
   </main>
