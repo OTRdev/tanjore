@@ -1,0 +1,69 @@
+---
+// Merch page. Products come from src/data/merch.json; checkout happens in the Printify store.
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import merch from "../data/merch.json";
+import { site } from "../data/site";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/merch/*.{png,jpg,jpeg,webp}", { eager: true });
+const imageFor = (file: string | null): ImageMetadata | undefined => (file ? images[`../assets/merch/${file}`]?.default : undefined);
+const money = (n: number) => `$${n.toFixed(2)}`;
+---
+
+<Base
+  title="Merch | Tanjore Indian Cuisine, Belleville ON"
+  description="Official Tanjore Indian Cuisine merch: Butter Chicken King hoodies and tees, and the Tanjore Classic tee. Family recipes since 2004."
+  noindex={!merch.live}
+>
+  <Header />
+  <main id="main">
+    <section class="section" style="padding-bottom: var(--space-6);">
+      <div class="container" style="text-align:center; max-width: 760px; margin-inline:auto;">
+        <span class="eyebrow">Official merch</span>
+        <h1 style="font-size: var(--fs-3xl);">Tanjore Merch</h1>
+        <p class="muted" style="font-size: var(--fs-md); margin-top: var(--space-4);">
+          Wear the story. Butter Chicken King is inspired by the butter chicken our chef has been making for over 20 years.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="merch-grid">
+          {merch.products.map((p) => {
+            const img = imageFor(p.image);
+            return (
+              <article class="merch-card">
+                <div class="merch-photo">
+                  {img ? (
+                    <Image src={img} alt={p.name} width={720} quality={75} loading="lazy" />
+                  ) : (
+                    <span class="merch-photo-empty">Photo coming soon</span>
+                  )}
+                </div>
+                <div class="merch-body">
+                  <h2>{p.name}</h2>
+                  <p class="muted small">{p.description}</p>
+                  {p.price !== null && <p class="merch-price">From {money(p.price)}</p>}
+                  {p.url ? (
+                    <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Shop now</a>
+                  ) : (
+                    <span class="btn btn-primary" aria-disabled="true">Coming soon</span>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <p class="merch-note muted small">
+          Every piece is printed to order by our print partner and shipped to you. Production and delivery times are
+          shown at checkout. Questions? Call us on <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

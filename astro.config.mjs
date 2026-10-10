@@ -1,10 +1,12 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import merch from "./src/data/merch.json" with { type: "json" };
 
 export default defineConfig({
   site: "https://www.tanjore.ca",
   output: "static",
   trailingSlash: "never",
   build: { format: "file", inlineStylesheets: "always" },
-  integrations: [sitemap()],
+  // The Merch page stays out of the sitemap until src/data/merch.json says live: true.
+  integrations: [sitemap({ filter: (page) => merch.live || !page.includes("/merch") })],
 });

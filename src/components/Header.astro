@@ -2,6 +2,7 @@
 // src/components/Header.astro
 import { Image } from "astro:assets";
 import { site } from "../data/site";
+import merch from "../data/merch.json";
 import logo from "../assets/brand/logo.png";
 
 const pathname = Astro.url.pathname;
@@ -9,6 +10,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/menu", label: "Menu" },
   { href: "/about", label: "About" },
+  ...(merch.live ? [{ href: "/merch", label: "Merch" }] : []),
   { href: "/contact", label: "Contact" },
 ];
 ---

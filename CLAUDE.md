@@ -15,6 +15,9 @@ Static Astro site for a family-run North Indian restaurant in Belleville, Ontari
 - `src/data/site.ts`: name, phone, address, hours, order link, social links, tagline. One source of truth.
 - `src/data/menu.ts`: the whole menu (names, descriptions, prices, dietary flags, combos, thalis).
 - `src/data/menuSchema.ts`: builds the Google structured data from the menu. Do not hand-edit.
+- `src/data/merch.json`: the Merch page's products (name, price, shop url, image file in `src/assets/merch/`) and the `live`
+  switch. While `live` is false the Merch tab is hidden, the page is noindex and it is not in the sitemap. To launch, fill in
+  the products and set `live: true`. Checkout happens in the Printify Pop-Up Store (tanjore-merch.printify.me), not on this site.
 - `src/pages/`, `src/components/`, `src/styles/global.css`, `src/scripts/` (small vanilla scripts), `src/assets/` (images).
 
 ## Rules (these come from the owner: follow them every time)
