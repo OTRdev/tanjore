@@ -9,7 +9,7 @@ import { site } from "../data/site";
 
 const images = import.meta.glob<{ default: ImageMetadata }>("../assets/merch/*.{png,jpg,jpeg,webp}", { eager: true });
 const imageFor = (file: string | null): ImageMetadata | undefined => (file ? images[`../assets/merch/${file}`]?.default : undefined);
-const money = (n: number) => `$${n.toFixed(2)}`;
+const money = (n: number) => `US$${n.toFixed(2)}`;
 ---
 
 <Base
@@ -59,8 +59,9 @@ const money = (n: number) => `$${n.toFixed(2)}`;
         </div>
 
         <p class="merch-note muted small">
-          Every piece is printed to order by our print partner and shipped to you. Production and delivery times are
-          shown at checkout. Questions? Call us on <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
+          Prices are in US dollars, and shipping is calculated at checkout. Every piece is printed to order by our print
+          partner and shipped to you; production and delivery times are shown at checkout. Questions? Call us on
+          <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.
         </p>
       </div>
     </section>
