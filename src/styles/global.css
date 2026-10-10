@@ -332,4 +332,6 @@ img.portrait { width: 100%; max-width: 380px; height: auto; margin-inline: auto;
 .merch-price { font-weight: 700; color: var(--color-deep); }
 .merch-body .btn { margin-top: auto; align-self: flex-start; }
 .btn[aria-disabled="true"] { opacity: 0.55; pointer-events: none; cursor: default; }
-.merch-note { max-width: 640px; margin: var(--space-7) auto 0; text-align: center; }
+.merch-policy { max-width: 680px; margin: var(--space-7) auto 0; }
+.merch-policy h2 { font-size: var(--fs-lg); margin-bottom: var(--space-3); }
+.merch-policy ul { margin: 0; padding-left: 1.2em; color: var(--color-text-muted); font-size: var(--fs-sm); display: grid; gap: var(--space-2); }
