@@ -13,6 +13,7 @@ const cases = [
   ["/MENU/", "", "", "/menu"], ["/menu.html", "", "", "/menu"], ["/about/", "", "", "/about"], ["/About", "", "", "/about"],
   ["/contact/", "", "", "/contact"], ["/index.html", "", "", "/"], ["/gallery", "", "", "/"], ["/gallery/", "", "", "/"],
   ["/home", "", "", "/"], ["/menu/", "?utm_source=google", "", "/menu?utm_source=google"],
+  ["/merch/", "", "", "/merch"], ["/Merch", "", "", "/merch"],
   ["/xyz", "", "", "/xyz"], ["/xyz/", "", "", "/xyz"], ["/", "", "#/menu", "/menu"], ["/", "", "#/About", "/about"],
 ];
 

@@ -3,6 +3,7 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const dist = "dist";
+const merchLive = JSON.parse(readFileSync("src/data/merch.json", "utf8")).live === true;
 const pages = readdirSync(dist).filter((f) => f.endsWith(".html"));
 let problems = 0;
 const bad = (page, msg) => { problems++; console.log(`  FAIL [${page}] ${msg}`); };
@@ -25,7 +26,9 @@ for (const page of pages) {
   if (count(/<h1[\s>]/g) !== 1) bad(page, `expected 1 <h1>, found ${count(/<h1[\s>]/g)}`);
   if (count(/<main[\s>]/g) !== 1) bad(page, "expected exactly 1 <main>");
   if (is404 && !/noindex/.test(html)) bad(page, "404 should be noindex");
-  if (!is404 && /noindex/.test(html)) bad(page, "page is noindex!");
+  const hiddenMerch = page === "merch.html" && !merchLive; // the Merch page is hidden until merch.json says live: true
+  if (!is404 && !hiddenMerch && /noindex/.test(html)) bad(page, "page is noindex!");
+  if (hiddenMerch && !/noindex/.test(html)) bad(page, "hidden Merch page must be noindex until it is live");
   if (/lang="en-CA"/.test(html) === false) bad(page, "html lang missing");
   if (/<img(?![^>]*\balt=)[^>]*>/.test(html)) bad(page, "<img> without alt");
   if (/alt=""/.test(html)) bad(page, "empty alt on an img");
@@ -60,6 +63,8 @@ for (const u of ["/", "/menu", "/about", "/contact"]) {
   if (!sm.includes(`https://www.tanjore.ca${u === "/" ? "/" : u}<`)) bad("sitemap", `missing ${u}`);
 }
 if (sm.includes("404")) bad("sitemap", "includes 404");
+if (merchLive !== sm.includes("https://www.tanjore.ca/merch<")) bad("sitemap", merchLive ? "live Merch page missing from sitemap" : "hidden Merch page must not be in the sitemap");
+if (merchLive !== readFileSync(join(dist, "index.html"), "utf8").includes('href="/merch"')) bad("nav", merchLive ? "Merch tab missing from the menu" : "Merch tab must stay hidden until live");
 if (readFileSync(join(dist, "CNAME"), "utf8").trim() !== "www.tanjore.ca") bad("CNAME", "wrong domain");
 
 console.log(problems ? `\n${problems} problem(s)` : `OK: ${pages.length} pages verified`);
