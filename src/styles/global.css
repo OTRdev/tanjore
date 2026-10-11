@@ -340,3 +340,7 @@ img.portrait { width: 100%; max-width: 380px; height: auto; margin-inline: auto;
 .merch-thumb { width: 56px; height: 56px; padding: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; background: #fff; cursor: pointer; }
 .merch-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .merch-thumb[aria-pressed="true"] { border-color: var(--color-action); }
+/* One or two products: keep the cards a sensible size and centred instead of stretching. */
+.merch-grid:has(> :only-child) { grid-template-columns: minmax(0, 420px); justify-content: center; }
+.merch-grid:has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 380px)); justify-content: center; }
+@media (max-width: 600px) { .merch-grid:has(> :nth-child(2):last-child) { grid-template-columns: 1fr; } }
