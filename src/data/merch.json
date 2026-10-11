@@ -20,40 +20,74 @@
           "alt": "Orange Butter Chicken King hoodie worn on a sofa"
         },
         {
-          "file": "hoodie-orange-front.jpg",
-          "alt": "Orange Butter Chicken King hoodie, front"
-        },
-        {
-          "file": "hoodie-orange-back.jpg",
-          "alt": "Orange hoodie, back, with the Tanjore Indian Cuisine badge"
-        },
-        {
           "file": "hoodie-orange-model.jpg",
           "alt": "Orange Butter Chicken King hoodie worn by a model"
         },
         {
-          "file": "hoodie-orange-folded.jpg",
-          "alt": "Orange hoodie folded to show the Butter Chicken King print"
+          "file": "hoodie-orange-front.jpg",
+          "alt": "Orange hoodie laid flat, front with the Butter Chicken King print"
+        },
+        {
+          "file": "hoodie-orange-back.jpg",
+          "alt": "Orange hoodie, back, with the Tanjore Indian Cuisine logo"
+        },
+        {
+          "file": "hoodie-orange-back-hood.jpg",
+          "alt": "Orange hoodie, back with the hood up"
         }
       ]
     },
     {
       "id": "bck-boxy-tee",
-      "show": false,
+      "show": true,
       "name": "Butter Chicken King Boxy Tee",
-      "description": "Relaxed, oversized boxy-fit tee with the Butter Chicken King rooster on the front.",
+      "description": "Relaxed, oversized boxy-fit tee: the Butter Chicken King rooster on the front, a small Tanjore logo underneath.",
       "price": 32.99,
       "url": null,
-      "images": []
+      "images": [
+        {
+          "file": "boxy-tee-toast-model.jpg",
+          "alt": "Butter Chicken King boxy tee in toast, worn by a woman"
+        },
+        {
+          "file": "boxy-tee-toast-model2.jpg",
+          "alt": "Butter Chicken King boxy tee in toast, worn by a man"
+        },
+        {
+          "file": "boxy-tee-toast-front.jpg",
+          "alt": "Butter Chicken King boxy tee in toast, front"
+        }
+      ]
     },
     {
       "id": "classic-tee",
-      "show": false,
+      "show": true,
       "name": "Tanjore Classic Tee",
       "description": "Soft everyday tee with the Tanjore Indian Cuisine badge: family recipes since 2004.",
       "price": 24.99,
       "url": null,
-      "images": []
+      "images": [
+        {
+          "file": "classic-tee-white-lifestyle.jpg",
+          "alt": "White Tanjore Classic tee worn while sitting on the floor"
+        },
+        {
+          "file": "classic-tee-white-model.jpg",
+          "alt": "White Tanjore Classic tee worn by a model"
+        },
+        {
+          "file": "classic-tee-white-front.jpg",
+          "alt": "White Tanjore Classic tee, front"
+        },
+        {
+          "file": "classic-tee-white-flatlay.jpg",
+          "alt": "White Tanjore Classic tee folded in a flat lay"
+        },
+        {
+          "file": "classic-tee-white-folded.jpg",
+          "alt": "White Tanjore Classic tee folded"
+        }
+      ]
     }
   ]
 }
