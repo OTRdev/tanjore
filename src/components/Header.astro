@@ -10,7 +10,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/menu", label: "Menu" },
   { href: "/about", label: "About" },
-  ...(merch.live ? [{ href: "/merch", label: "Merch" }] : []),
+  ...(merch.status !== "hidden" ? [{ href: "/merch", label: "Merch" }] : []),
   { href: "/contact", label: "Contact" },
 ];
 ---

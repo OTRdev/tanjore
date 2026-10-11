@@ -3,7 +3,8 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const dist = "dist";
-const merchLive = JSON.parse(readFileSync("src/data/merch.json", "utf8")).live === true;
+const merchStatus = JSON.parse(readFileSync("src/data/merch.json", "utf8")).status;
+const merchLive = merchStatus !== "hidden"; // "teaser" and "live" both show the tab and list the page
 const pages = readdirSync(dist).filter((f) => f.endsWith(".html"));
 let problems = 0;
 const bad = (page, msg) => { problems++; console.log(`  FAIL [${page}] ${msg}`); };
@@ -26,7 +27,7 @@ for (const page of pages) {
   if (count(/<h1[\s>]/g) !== 1) bad(page, `expected 1 <h1>, found ${count(/<h1[\s>]/g)}`);
   if (count(/<main[\s>]/g) !== 1) bad(page, "expected exactly 1 <main>");
   if (is404 && !/noindex/.test(html)) bad(page, "404 should be noindex");
-  const hiddenMerch = page === "merch.html" && !merchLive; // the Merch page is hidden until merch.json says live: true
+  const hiddenMerch = page === "merch.html" && !merchLive; // the Merch page is hidden while merch.json status is hidden
   if (!is404 && !hiddenMerch && /noindex/.test(html)) bad(page, "page is noindex!");
   if (hiddenMerch && !/noindex/.test(html)) bad(page, "hidden Merch page must be noindex until it is live");
   if (/lang="en-CA"/.test(html) === false) bad(page, "html lang missing");

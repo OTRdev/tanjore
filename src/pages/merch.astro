@@ -1,5 +1,6 @@
 ---
 // Merch page. Products come from src/data/merch.json; checkout happens in the Printify store.
+// merch.json "status": "hidden" (no tab, noindex), "teaser" (launching-soon page) or "live" (the shop).
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -12,103 +13,138 @@ const imageFor = (file: string): ImageMetadata | undefined => images[`../assets/
 // Only keep gallery pictures whose file actually exists in src/assets/merch/.
 const galleryOf = (p: (typeof merch.products)[number]) =>
   p.images.map((i) => ({ src: imageFor(i.file), alt: i.alt })).filter((i): i is { src: ImageMetadata; alt: string } => !!i.src);
-const money = (n: number) => `US$${n.toFixed(2)}`;
+const money = (n: number) => "US$" + n.toFixed(2);
+const isLive = merch.status === "live";
+const isTeaser = merch.status === "teaser";
+const roosterArt = imageFor("rooster-teaser.png");
+const title = isTeaser
+  ? `Merch launching ${merch.launchLabel} | Tanjore Indian Cuisine, Belleville ON`
+  : "Merch | Tanjore Indian Cuisine, Belleville ON";
+const description = isTeaser
+  ? `Official Tanjore merch is coming ${merch.launchLabel}: the Butter Chicken King hoodie. Same chef, same recipes, since 2004.`
+  : "Official Tanjore Indian Cuisine merch: Butter Chicken King hoodies and tees, and the Tanjore Classic tee. Family recipes since 2004.";
 ---
 
-<Base
-  title="Merch | Tanjore Indian Cuisine, Belleville ON"
-  description="Official Tanjore Indian Cuisine merch: Butter Chicken King hoodies and tees, and the Tanjore Classic tee. Family recipes since 2004."
-  noindex={!merch.live}
->
+<Base title={title} description={description} noindex={merch.status === "hidden"}>
   <Header />
   <main id="main">
     <section class="section" style="padding-bottom: var(--space-6);">
       <div class="container" style="text-align:center; max-width: 760px; margin-inline:auto;">
-        <span class="eyebrow">Official merch</span>
-        <h1 style="font-size: var(--fs-3xl);">Tanjore Merch</h1>
+        <span class="eyebrow">{isTeaser ? "Launching soon" : "Official merch"}</span>
+        <h1 style="font-size: var(--fs-3xl);">{isTeaser ? "The Butter Chicken King is coming" : "Tanjore Merch"}</h1>
         <p class="muted" style="font-size: var(--fs-md); margin-top: var(--space-4);">
           Wear the story. Butter Chicken King is inspired by the butter chicken our chef has been making for over 20 years.
         </p>
       </div>
     </section>
 
-    <section class="section" style="padding-top: 0;">
-      <div class="container">
-        <div class="merch-grid">
-          {merch.products.filter((p) => p.show).map((p) => {
-            const gallery = galleryOf(p);
-            return (
-              <article class="merch-card" data-merch-card>
-                <div class="merch-photo">
-                  {gallery.length ? (
-                    gallery.map((g, i) => (
-                      <Image
-                        src={g.src}
-                        alt={g.alt}
-                        width={720}
-                        quality={75}
-                        loading={i === 0 ? "eager" : "lazy"}
-                        class="merch-slide"
-                        data-slide
-                        hidden={i !== 0}
-                      />
-                    ))
-                  ) : (
-                    <span class="merch-photo-empty">Photo coming soon</span>
-                  )}
-                </div>
-                {gallery.length > 1 && (
-                  <div class="merch-thumbs" role="group" aria-label={`${p.name} photos`}>
-                    {gallery.map((g, i) => (
-                      <button type="button" class="merch-thumb" data-thumb={i} aria-pressed={i === 0 ? "true" : "false"} aria-label={`Show photo ${i + 1}: ${g.alt}`}>
-                        <Image src={g.src} alt={g.alt} width={120} height={120} quality={60} loading="lazy" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-                <div class="merch-body">
-                  <h2>{p.name}</h2>
-                  <p class="muted small">{p.description}</p>
-                  {p.price !== null && <p class="merch-price">From {money(p.price)}</p>}
-                  {p.url ? (
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Shop now</a>
-                  ) : (
-                    <span class="btn btn-primary" aria-disabled="true">Coming soon</span>
-                  )}
-                </div>
-              </article>
-            );
-          })}
+    {isTeaser && (
+      <section class="section" style="padding-top: 0;">
+        <div class="container teaser">
+          <div class="teaser-art">
+            {roosterArt && (
+              <Image src={roosterArt} alt="The Butter Chicken King: a rooster in a crown with a block of melting butter" width={560} quality={80} loading="eager" />
+            )}
+          </div>
+          <div class="teaser-copy">
+            <p class="teaser-date">{merch.launchLabel}</p>
+            <p class="teaser-count" id="teaser-count" data-launch={merch.launchDate} hidden></p>
+            <p class="muted">
+              Our first Tanjore hoodie is almost here: the Butter Chicken King rooster on the front and the Tanjore badge on
+              the back. Official merch from the kitchen that has been making butter chicken since 2004.
+            </p>
+            <div class="teaser-actions">
+              {merch.signupUrl && (
+                <a href={merch.signupUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get notified on launch day</a>
+              )}
+              <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Follow on Instagram</a>
+              <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Follow on Facebook</a>
+            </div>
+          </div>
         </div>
+      </section>
+    )}
 
-        <section class="merch-policy" aria-labelledby="merch-policy-title">
-          <h2 id="merch-policy-title">Shipping &amp; returns</h2>
-          <ul>
-            <li>Prices are in US dollars, and shipping is calculated at checkout.</li>
-            <li>
-              Every item is printed to order, so please allow a few business days for production, plus shipping time.
-              Delivery times and costs are shown at checkout.
-            </li>
-            <li>
-              If your item arrives damaged, misprinted or defective, contact us within 30 days of delivery with a photo
-              and we will replace or refund it.
-            </li>
-            <li>
-              Because items are made to order, we can't accept returns or exchanges for size or change of mind. Please
-              check the size chart before ordering.
-            </li>
-            <li>
-              Questions? Call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a> or email
-              <a href={`mailto:${merch.supportEmail}`}>{merch.supportEmail}</a>.
-            </li>
-          </ul>
-        </section>
-      </div>
-    </section>
+    {isLive && (
+      <section class="section" style="padding-top: 0;">
+        <div class="container">
+          <div class="merch-grid">
+            {merch.products.filter((p) => p.show).map((p) => {
+              const gallery = galleryOf(p);
+              return (
+                <article class="merch-card" data-merch-card>
+                  <div class="merch-photo">
+                    {gallery.length ? (
+                      gallery.map((g, i) => (
+                        <Image
+                          src={g.src}
+                          alt={g.alt}
+                          width={720}
+                          quality={75}
+                          loading={i === 0 ? "eager" : "lazy"}
+                          class="merch-slide"
+                          data-slide
+                          hidden={i !== 0}
+                        />
+                      ))
+                    ) : (
+                      <span class="merch-photo-empty">Photo coming soon</span>
+                    )}
+                  </div>
+                  {gallery.length > 1 && (
+                    <div class="merch-thumbs" role="group" aria-label={`${p.name} photos`}>
+                      {gallery.map((g, i) => (
+                        <button type="button" class="merch-thumb" data-thumb={i} aria-pressed={i === 0 ? "true" : "false"} aria-label={`Show photo ${i + 1}: ${g.alt}`}>
+                          <Image src={g.src} alt={g.alt} width={120} height={120} quality={60} loading="lazy" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <div class="merch-body">
+                    <h2>{p.name}</h2>
+                    <p class="muted small">{p.description}</p>
+                    {p.price !== null && <p class="merch-price">From {money(p.price)}</p>}
+                    {p.url ? (
+                      <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Shop now</a>
+                    ) : (
+                      <span class="btn btn-primary" aria-disabled="true">Coming soon</span>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <section class="merch-policy" aria-labelledby="merch-policy-title">
+            <h2 id="merch-policy-title">Shipping &amp; returns</h2>
+            <ul>
+              <li>Prices are in US dollars, and shipping is calculated at checkout.</li>
+              <li>
+                Every item is printed to order, so please allow a few business days for production, plus shipping time.
+                Delivery times and costs are shown at checkout.
+              </li>
+              <li>
+                If your item arrives damaged, misprinted or defective, contact us within 30 days of delivery with a photo
+                and we will replace or refund it.
+              </li>
+              <li>
+                Because items are made to order, we can't accept returns or exchanges for size or change of mind. Please
+                check the size chart before ordering.
+              </li>
+              <li>
+                Questions? Call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a> or email
+                <a href={`mailto:${merch.supportEmail}`}>{merch.supportEmail}</a>.
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    )}
   </main>
   <Footer />
 
   <script>
     import "../scripts/merch-gallery.ts";
+    import "../scripts/merch-countdown.ts";
   </script>
 </Base>

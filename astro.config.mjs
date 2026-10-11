@@ -7,6 +7,6 @@ export default defineConfig({
   output: "static",
   trailingSlash: "never",
   build: { format: "file", inlineStylesheets: "always" },
-  // The Merch page stays out of the sitemap until src/data/merch.json says live: true.
-  integrations: [sitemap({ filter: (page) => merch.live || !page.includes("/merch") })],
+  // The Merch page stays out of the sitemap while src/data/merch.json has status "hidden".
+  integrations: [sitemap({ filter: (page) => merch.status !== "hidden" || !page.includes("/merch") })],
 });
