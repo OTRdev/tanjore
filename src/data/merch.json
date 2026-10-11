@@ -1,11 +1,12 @@
 {
-  "_howto": "To launch: fill in each product's price, url and image, then set live to true. Images go in src/assets/merch/ (use the file name here). While live is false the Merch tab is hidden, the page is noindex and it is left out of the sitemap.",
+  "_howto": "To launch: for each product fill in price, url and images (files in src/assets/merch/), set show:true for the ones that are ready, then set live:true. While live is false the Merch tab is hidden, the page is noindex and left out of the sitemap. Products with show:false are not displayed.",
   "live": false,
   "storeUrl": "https://tanjore-merch.printify.me",
   "supportEmail": "tanjorecatering18@gmail.com",
   "products": [
     {
       "id": "bck-hoodie",
+      "show": true,
       "name": "Butter Chicken King Hoodie",
       "description": "Heavy hooded sweatshirt: the Butter Chicken King rooster on the front, the Tanjore Indian Cuisine badge on the back.",
       "price": 49.99,
@@ -35,6 +36,7 @@
     },
     {
       "id": "bck-boxy-tee",
+      "show": false,
       "name": "Butter Chicken King Boxy Tee",
       "description": "Relaxed, oversized boxy-fit tee with the Butter Chicken King rooster on the front.",
       "price": 32.99,
@@ -43,6 +45,7 @@
     },
     {
       "id": "classic-tee",
+      "show": false,
       "name": "Tanjore Classic Tee",
       "description": "Soft everyday tee with the Tanjore Indian Cuisine badge: family recipes since 2004.",
       "price": 24.99,

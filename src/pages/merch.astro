@@ -35,7 +35,7 @@ const money = (n: number) => `US$${n.toFixed(2)}`;
     <section class="section" style="padding-top: 0;">
       <div class="container">
         <div class="merch-grid">
-          {merch.products.map((p) => {
+          {merch.products.filter((p) => p.show).map((p) => {
             const gallery = galleryOf(p);
             return (
               <article class="merch-card" data-merch-card>
