@@ -88,6 +88,64 @@
           "alt": "White Tanjore Classic tee folded"
         }
       ]
+    },
+    {
+      "id": "bck-toque-dark",
+      "show": true,
+      "name": "Butter Chicken King Toque, Gold and White",
+      "description": "Embroidered cuffed toque: BUTTER CHICKEN in white thread and KING in gold, with a crown on each side. Dark colours.",
+      "price": 24.99,
+      "url": "https://merch.tanjore.ca/product/33193043/butter-chicken-king-embroidered-toque-gold-and-amp-white-stitching",
+      "images": [
+        {
+          "file": "toque-bck-dark-black-front.jpg",
+          "alt": "Black Butter Chicken King toque with white and gold embroidery"
+        },
+        {
+          "file": "toque-bck-dark-grey-front.jpg",
+          "alt": "Dark grey Butter Chicken King toque with white and gold embroidery"
+        }
+      ]
+    },
+    {
+      "id": "bck-toque-light",
+      "show": true,
+      "name": "Butter Chicken King Toque, Black and Red",
+      "description": "Embroidered cuffed toque: BUTTER CHICKEN in black thread and KING in red, with a crown on each side. Light colours.",
+      "price": 24.99,
+      "url": "https://merch.tanjore.ca/product/33193030/butter-chicken-king-embroidered-toque-black-and-amp-red-stitching",
+      "images": [
+        {
+          "file": "toque-bck-light-white-model.jpg",
+          "alt": "White Butter Chicken King toque with black and red embroidery, worn by a man"
+        },
+        {
+          "file": "toque-bck-light-white-front.jpg",
+          "alt": "White Butter Chicken King toque with black and red embroidery, front"
+        }
+      ]
+    },
+    {
+      "id": "tanjore-toque",
+      "show": true,
+      "name": "Tanjore Toque",
+      "description": "Embroidered cuffed toque with the Tanjore script in red thread. Family recipes since 2004.",
+      "price": 24.99,
+      "url": "https://merch.tanjore.ca/product/33193053/tanjore-embroidered-toque-red-stitching",
+      "images": [
+        {
+          "file": "toque-tanjore-black-model.jpg",
+          "alt": "Black Tanjore toque with red script embroidery, worn by a woman"
+        },
+        {
+          "file": "toque-tanjore-black-front.jpg",
+          "alt": "Black Tanjore toque with red script embroidery, front"
+        },
+        {
+          "file": "toque-tanjore-white-front.jpg",
+          "alt": "White Tanjore toque with red script embroidery, front"
+        }
+      ]
     }
   ]
 }
