@@ -53,6 +53,7 @@ const description = isTeaser
               Our first Tanjore hoodie is almost here: the Butter Chicken King rooster on the front and the Tanjore badge on
               the back. Official merch from the kitchen that has been making butter chicken since 2004.
             </p>
+            <p class="muted small">Merch is sold in US dollars (USD) through our Printify store.</p>
             <div class="teaser-actions">
               {merch.signupUrl && (
                 <a href={merch.signupUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get notified on launch day</a>
@@ -68,6 +69,10 @@ const description = isTeaser
     {isLive && (
       <section class="section" style="padding-top: 0;">
         <div class="container">
+          <p class="muted" style="text-align:center; margin-bottom: var(--space-6);">
+            <strong>All prices are in US dollars (USD).</strong> Checkout is on our secure Printify store, which charges in
+            USD, so your card company will convert the amount to CAD at its own rate.
+          </p>
           <div class="merch-grid">
             {merch.products.filter((p) => p.show).map((p) => {
               const gallery = galleryOf(p);
@@ -103,7 +108,7 @@ const description = isTeaser
                   <div class="merch-body">
                     <h2>{p.name}</h2>
                     <p class="muted small">{p.description}</p>
-                    {p.price !== null && <p class="merch-price">From {money(p.price)}</p>}
+                    {p.price !== null && <p class="merch-price">From {money(p.price)} USD</p>}
                     {p.url ? (
                       <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Shop now</a>
                     ) : (
