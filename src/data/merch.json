@@ -1,6 +1,6 @@
 {
   "_howto": "STATUS: \"hidden\" = no Merch tab, page noindex, not in sitemap. \"teaser\" = Merch tab and a Launching soon page (indexable, in sitemap). \"live\" = the shop page. To launch: for each product fill in price, url and images (files in src/assets/merch/), set show:true for the ones that are ready, then set status to \"live\". Products with show:false are not displayed.",
-  "status": "teaser",
+  "status": "live",
   "launchDate": "2026-10-31",
   "launchLabel": "Saturday, October 31",
   "signupUrl": "https://docs.google.com/forms/d/e/1FAIpQLSe8wsBV5DKL2W4nmsDpru32JxV0q909Nou5BoO3qqCqrVNRBQ/viewform",
