@@ -5,6 +5,10 @@ Official website for Tanjore Indian Cuisine, Belleville, Ontario: **https://www.
 Static site built with [Astro](https://astro.build). No database or server needed.
 Hosted on GitHub Pages and deployed automatically by GitHub Actions.
 
+**All rights reserved.** The code, design, menu, text, logo, photos and the Tanjore and
+Butter Chicken King names belong to Tanjore Indian Cuisine and may not be copied or reused
+without written permission. See [LICENSE](LICENSE).
+
 ## Everyday edits
 
 | To change | Edit |
